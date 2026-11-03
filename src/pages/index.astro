@@ -12,7 +12,7 @@ import Testimonios from '../components/Testimonios.astro';
 import infinito from '../assets/brand/infinito.png';
 import saint from '../assets/brand/saint-portafolio.jpg';
 import banner from '../assets/imagenes/banner-cierre-guia.png';
-import { site, whatsappUrl } from '../config/site';
+import { site, whatsappUrl, listaEsperaConfigurada } from '../config/site';
 import { faq } from '../config/faq';
 
 const clase = (await getCollection('clases')).sort((a, b) => a.data.orden - b.data.orden)[0].data;
@@ -38,6 +38,8 @@ const jsonLd = [
 ];
 
 const estadoClase = clase.estado === 'proximamente' ? 'Próximamente' : 'Disponible';
+// Mientras el Google Form no esté conectado, producción ofrece WhatsApp y el texto no debe prometer un correo.
+const conFormulario = listaEsperaConfigurada || import.meta.env.DEV;
 ---
 <Layout jsonLd={jsonLd}>
   <div class="hero-bg">
@@ -154,7 +156,7 @@ const estadoClase = clase.estado === 'proximamente' ? 'Próximamente' : 'Disponi
     <div class="wrap cierre-grid seccion">
       <div>
         <h2 class="h2" id="cierre-t">Empieza por la Clase 1</h2>
-        <p class="lead">Déjame tu correo y te aviso cuando salga. Si lo que buscas es construir algo, escríbeme.</p>
+        <p class="lead">{conFormulario ? 'Déjame tu correo y te aviso cuando salga. Si lo que buscas es construir algo, escríbeme.' : 'Escríbeme por WhatsApp y te aviso cuando salga la clase. Si lo que buscas es construir algo, también.'}</p>
         <p class="cierre-acc"><a class="btn btn-line" href={whatsappUrl('Hola Saint, vi tu sitio y quiero platicar.')} target="_blank" rel="noopener noreferrer">Escríbeme por WhatsApp</a></p>
       </div>
       <ListaEspera id="lista-cierre" claseTitulo={clase.titulo} />
