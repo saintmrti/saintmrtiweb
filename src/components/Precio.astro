@@ -1,0 +1,54 @@
+---
+interface Props {
+  precio?: number;
+  precioLanzamiento?: number;
+  lanzamientoHasta?: Date;
+  hotmartUrl?: string;
+  hotmartUrlLanzamiento?: string;
+}
+const { precio, precioLanzamiento, lanzamientoHasta, hotmartUrl, hotmartUrlLanzamiento } = Astro.props;
+const mx = (n: number) => `MX$${n.toLocaleString('es-MX')}`;
+const hayLanzamiento = Boolean(precioLanzamiento && lanzamientoHasta);
+const hasta = lanzamientoHasta?.toISOString() ?? '';
+---
+{(precio || precioLanzamiento) && (
+  <div class="precio" data-hasta={hasta}>
+    {hayLanzamiento ? (
+      <>
+        <p class="lanz" data-lanzamiento>
+          <span class="ahora">{mx(precioLanzamiento!)}</span>
+          {precio && <s class="antes">{mx(precio)}</s>}
+          <span class="aviso">Precio de lanzamiento hasta el {lanzamientoHasta!.toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+        </p>
+        <p class="normal" data-normal hidden><span class="ahora">{precio ? mx(precio) : ''}</span></p>
+      </>
+    ) : (
+      <p class="normal"><span class="ahora">{mx((precio ?? precioLanzamiento)!)}</span></p>
+    )}
+    {hotmartUrl && (
+      <a class="btn btn-m" href={hotmartUrl} data-normal-url={hotmartUrl} data-lanz-url={hotmartUrlLanzamiento ?? hotmartUrl} target="_blank" rel="noopener noreferrer" data-comprar>Comprar en Hotmart</a>
+    )}
+  </div>
+)}
+
+<style>
+  .precio { display: grid; gap: 16px; }
+  .ahora { font: 700 48px/1 var(--font-barlow-condensed); }
+  .antes { margin-left: 12px; color: var(--color-ink-2); font-size: 22px; }
+  .aviso { display: block; margin-top: 8px; color: var(--color-apps); font-weight: 600; font-size: 16px; }
+  p { margin: 0; }
+</style>
+
+<script>
+  // La fecha se revisa en el navegador: el precio de lanzamiento termina solo, sin volver a publicar.
+  document.querySelectorAll<HTMLElement>('.precio[data-hasta]').forEach((el) => {
+    const hasta = el.dataset.hasta;
+    if (!hasta) return;
+    if (Date.now() > new Date(hasta).getTime()) {
+      el.querySelector<HTMLElement>('[data-lanzamiento]')?.setAttribute('hidden', '');
+      el.querySelector<HTMLElement>('[data-normal]')?.removeAttribute('hidden');
+      const boton = el.querySelector<HTMLAnchorElement>('[data-comprar]');
+      if (boton?.dataset.normalUrl) boton.href = boton.dataset.normalUrl;
+    }
+  });
+</script>

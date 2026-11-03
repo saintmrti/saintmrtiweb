@@ -1,0 +1,58 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import ListaEspera from '../../components/ListaEspera.astro';
+import Ilustracion from '../../components/Ilustracion.astro';
+
+const clases = (await getCollection('clases')).sort((a, b) => a.data.orden - b.data.orden);
+const primera = clases[0];
+---
+<Layout title="Clases de IA sin tecnicismos · saintmrti" description="Clases grabadas para entender la inteligencia artificial desde cero, explicadas por un programador que la usa todos los días.">
+  <section class="wrap seccion" style="--linea: var(--color-aprender)">
+    <h1 class="h2">Clases</h1>
+    <p class="lead">Clases grabadas, de una en una, para entender la inteligencia artificial sin tecnicismos. Empiezas por la Clase 1 y, cuando quieras más, sigue la línea.</p>
+    <ul class="lista">
+      {clases.map((c, i) => (
+        <li class="clase">
+          <a class="portada" href={`/clases/${c.id}`} aria-hidden="true" tabindex="-1">
+            {c.data.portada ? <Image src={c.data.portada} alt="" widths={[480, 800]} sizes="(min-width: 900px) 460px, 100vw" /> : <Ilustracion tipo="clase" />}
+          </a>
+          <div>
+            <p class="estado"><span class="dot" aria-hidden="true"></span>{c.data.estado === 'proximamente' ? 'Próximamente' : 'Disponible'} · Clase {i + 1}</p>
+            <h2 class="h3 t"><a href={`/clases/${c.id}`}>{c.data.titulo}</a></h2>
+            <p class="d">{c.data.resultado}</p>
+            <p class="acc"><a class="btn btn-m" href={`/clases/${c.id}`}>Ver la clase</a></p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </section>
+  <section class="banda seccion">
+    <div class="wrap lista-espera">
+      <div>
+        <h2 class="h2" style="--linea: var(--color-aprender)">Avísame cuando salga</h2>
+        <p class="lead">La {primera.data.tituloCorto.toLowerCase()} todavía no sale. Apúntate y te aviso por correo.</p>
+      </div>
+      <ListaEspera id="lista" claseTitulo={primera.data.titulo} />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .lista { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 40px; }
+  .clase { display: grid; gap: 22px; }
+  .portada :global(img), .portada :global(svg) { display: block; width: 100%; height: auto; border-radius: 18px; }
+  .estado { display: flex; align-items: center; gap: 10px; font-weight: 600; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--color-apps); }
+  .t { margin-top: 12px; font-size: 38px; line-height: 1.02; }
+  .t a { text-decoration: none; }
+  .t a:hover { text-decoration: underline; text-underline-offset: 6px; }
+  .d { margin-top: 12px; color: var(--color-ink-2); max-width: 52ch; }
+  .acc { margin-top: 22px; }
+  .lista-espera { display: grid; gap: 32px; }
+  @media (min-width: 900px) {
+    .clase { grid-template-columns: 460px minmax(0, 1fr); gap: 48px; align-items: center; }
+    .lista-espera { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+  }
+</style>

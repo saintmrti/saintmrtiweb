@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../config/site';
+---
+<Layout title="Aviso de privacidad · saintmrti" description="Cómo trato los datos personales que me compartes en la lista de espera y en los formularios de este sitio." noindex>
+  <article class="wrap seccion texto" style="--linea: var(--color-aprender)">
+    <h1 class="h2">Aviso de privacidad</h1>
+    <p class="borrador">Borrador pendiente de revisión por Saint antes de publicarse. Faltan el domicilio y la confirmación de los medios de contacto.</p>
+    <p class="actualizado">Última actualización: 3 de noviembre de 2026.</p>
+
+    <h2 class="h3">Quién es el responsable</h2>
+    <p>El responsable de tus datos personales es {site.nombre}, persona física, con domicilio en <mark>[TODO(Saint): domicilio]</mark>. Puedes escribirme a <a href={`mailto:${site.correo}`}>{site.correo}</a>.</p>
+
+    <h2 class="h3">Qué datos recabo</h2>
+    <p>En la lista de espera: tu nombre y tu correo electrónico. En los formularios opcionales: tu número de WhatsApp y lo que decidas escribir sobre lo que te gustaría aprender de la inteligencia artificial. En el formulario de clases personalizadas: los datos que ahí se piden (nombre, correo, ocupación, teléfono y tus motivos).</p>
+
+    <h2 class="h3">Para qué los uso</h2>
+    <p>Los uso para avisarte cuando salga la clase a la que te apuntaste, para responder tus mensajes y para ofrecerte las clases personalizadas que pediste. No los uso para otras finalidades ni los vendo.</p>
+
+    <h2 class="h3">Con quién se comparten</h2>
+    <p>Los formularios se guardan con Google (Formularios y Hojas de cálculo), que almacena la información por mi cuenta. Las compras de las clases se hacen en Hotmart, que tiene su propio aviso de privacidad. No comparto tus datos con nadie más.</p>
+
+    <h2 class="h3">Tus derechos</h2>
+    <p>Puedes acceder a tus datos, rectificarlos, cancelarlos u oponerte a su uso (derechos ARCO). También puedes pedir que te quite de la lista de espera en cualquier momento. Escríbeme a <a href={`mailto:${site.correo}`}>{site.correo}</a> con tu nombre y lo que necesitas, y te respondo.</p>
+
+    <h2 class="h3">Cambios a este aviso</h2>
+    <p>Si este aviso cambia, publicaré la nueva versión en esta página con su fecha de actualización.</p>
+  </article>
+</Layout>
+
+<style>
+  .texto { max-width: 820px; }
+  .texto h2.h3 { margin-top: 40px; font-size: 30px; }
+  .texto p { margin-top: 12px; color: var(--color-ink-2); max-width: 66ch; }
+  .texto a { text-decoration: underline; text-underline-offset: 3px; color: var(--color-porcelain); }
+  .borrador { margin-top: 24px; padding: 14px 16px; border: 2px solid var(--color-apps); border-radius: 10px; color: var(--color-porcelain) !important; }
+  .actualizado { margin-top: 16px; font-size: 15px; }
+  mark { background: rgba(255, 201, 103, 0.18); color: var(--color-apps); padding: 0 4px; border-radius: 4px; }
+</style>

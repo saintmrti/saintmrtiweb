@@ -1,0 +1,56 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { whatsappUrl } from '../config/site';
+
+interface Props { app: CollectionEntry<'apps'>['data'] }
+const { app } = Astro.props;
+---
+<article class="app">
+  <div class="app-txt">
+    <div class="cab">
+      <h3 class="h3 nombre">{app.nombre}</h3>
+      {app.version && <span class="tag tag-a">{app.version}</span>}
+    </div>
+    <p class="lead">{app.descripcion}</p>
+    {app.funciones.length > 0 && <ul class="funciones">{app.funciones.map((f) => <li>{f}</li>)}</ul>}
+    {app.nota && <p class="nota">{app.nota}</p>}
+    <div class="acciones">
+      {app.estado === 'disponible' && app.url && (
+        <a class="btn btn-a" href={app.url} target="_blank" rel="noopener noreferrer">Abrir {app.nombre}</a>
+      )}
+      {app.estado === 'proximamente' && <span class="tag tag-p">Próximamente</span>}
+      <a class="btn btn-line" href={whatsappUrl(`Hola Saint, probé ${app.nombre} y esto es lo que mejoraría: `)} target="_blank" rel="noopener noreferrer">Cuéntame qué mejorarías</a>
+    </div>
+    {app.stack.length > 0 && <p class="stack">Hecha con {app.stack.join(', ')}.</p>}
+  </div>
+  <div class="app-vis">
+    {app.imagen && <Image src={app.imagen} alt={`${app.nombre} en escritorio: panel con ingresos, gastos y balance del periodo, y recordatorios de pagos.`} widths={[640, 960, 1280]} sizes="(min-width: 900px) 560px, 100vw" class="desk" />}
+    {app.imagenMovil && <Image src={app.imagenMovil} alt={`${app.nombre} en celular: periodo activo, botón de nueva transacción y resumen de ingresos, gastos y balance.`} widths={[240, 360, 480]} sizes="(min-width: 900px) 220px, 55vw" class="mov" />}
+    <p class="pie">Vista de ejemplo con datos ficticios.</p>
+  </div>
+</article>
+
+<style>
+  .app { display: grid; gap: 36px; }
+  .cab { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+  .nombre { font-size: 44px; }
+  .funciones { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 9px; }
+  .funciones li { position: relative; padding-left: 26px; }
+  .funciones li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 9px; height: 9px; border-radius: 50%; background: var(--color-porcelain); box-shadow: 0 0 0 3px var(--color-apps); }
+  .nota { margin-top: 20px; color: var(--color-ink-2); font-weight: 500; }
+  .acciones { display: grid; gap: 12px; margin-top: 26px; }
+  .stack { margin-top: 20px; color: var(--color-lilac); font-size: 15px; }
+  .app-vis { display: grid; grid-template-columns: 1fr; justify-items: center; gap: 12px; }
+  .desk { display: none; }
+  .mov { width: min(55vw, 260px); height: auto; border-radius: 22px; border: 2px solid rgba(244, 240, 255, 0.85); }
+  .pie { color: var(--color-ink-2); font-size: 14px; }
+  @media (min-width: 640px) { .acciones { display: flex; flex-wrap: wrap; align-items: center; } }
+  @media (min-width: 900px) {
+    .app { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 56px; align-items: center; }
+    .app-vis { grid-template-columns: 1fr 220px; align-items: end; justify-items: stretch; gap: 16px 20px; }
+    .desk { display: block; width: 100%; height: auto; border-radius: 14px; border: 2px solid rgba(244, 240, 255, 0.85); }
+    .mov { width: 100%; }
+    .pie { grid-column: 1 / -1; }
+  }
+</style>

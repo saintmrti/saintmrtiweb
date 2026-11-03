@@ -1,0 +1,70 @@
+---
+import infinito from '../assets/brand/infinito.png';
+
+interface Props { tipo: 'clase' | 'landing' | 'app' | 'auto'; class?: string }
+const { tipo, class: clase = '' } = Astro.props;
+// Ilustraciones de señalética dibujadas en código. Son el hueco de las imágenes definitivas.
+---
+<svg class={`ilu ${clase}`} viewBox="0 0 480 320" aria-hidden="true" focusable="false">
+  <rect width="480" height="320" rx="18" fill="#0e0c31" />
+  <rect x="10" y="10" width="460" height="300" rx="12" fill="none" stroke="#f4f0ff" stroke-opacity=".85" stroke-width="3" />
+
+  {tipo === 'clase' && (
+    <g fill="none" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M90 56V100L150 160H240" stroke="#ff2fdc" stroke-width="12" stroke-dasharray="16 11" />
+      <path d="M240 160H290L370 240" stroke="#4a5bff" stroke-width="12" />
+      <path d="M240 160L190 210V262" stroke="#ffc967" stroke-width="12" />
+      <circle cx="90" cy="56" r="10" fill="#0e0c31" stroke="#ff2fdc" stroke-width="5" />
+      <circle cx="150" cy="160" r="10" fill="#0e0c31" stroke="#ff2fdc" stroke-width="5" />
+      <circle cx="370" cy="240" r="10" fill="#f4f0ff" stroke="#0e0c31" stroke-width="4" />
+      <circle cx="190" cy="262" r="10" fill="#f4f0ff" stroke="#0e0c31" stroke-width="4" />
+      <circle cx="240" cy="160" r="40" fill="#f4f0ff" stroke="none" />
+      <circle cx="240" cy="160" r="33" fill="#100d28" stroke="none" />
+      <image href={infinito.src} x="212" y="132" width="56" height="56" />
+    </g>
+  )}
+
+  {tipo === 'landing' && (
+    <g fill="none" stroke-linejoin="round" stroke-linecap="round">
+      <rect x="90" y="56" width="300" height="208" rx="10" fill="#0b0a29" stroke="#f4f0ff" stroke-width="4" />
+      <path d="M90 90H390" stroke="#f4f0ff" stroke-width="4" />
+      <circle cx="112" cy="73" r="5" fill="#ff2fdc" stroke="none" /><circle cx="130" cy="73" r="5" fill="#4a5bff" stroke="none" /><circle cx="148" cy="73" r="5" fill="#ffc967" stroke="none" />
+      <rect x="112" y="110" width="160" height="14" rx="4" fill="#f4f0ff" stroke="none" />
+      <rect x="112" y="134" width="112" height="10" rx="4" fill="#4a5bff" stroke="none" />
+      <rect x="112" y="160" width="76" height="26" rx="6" fill="#ffc967" stroke="none" />
+      <rect x="290" y="106" width="80" height="84" rx="8" stroke="#f4f0ff" stroke-width="3" />
+      <circle cx="316" cy="130" r="8" fill="#f4f0ff" stroke="none" />
+      <path d="M298 182L322 156L340 174L352 162L362 182" stroke="#4a5bff" stroke-width="5" />
+      {[0, 1, 2, 3, 4].map((i) => <rect x={112 + i * 52} y="210" width="44" height="34" rx="5" stroke="#f4f0ff" stroke-width="3" />)}
+    </g>
+  )}
+
+  {tipo === 'app' && (
+    <g fill="none" stroke-linejoin="round" stroke-linecap="round">
+      <rect x="64" y="62" width="258" height="180" rx="10" fill="#0b0a29" stroke="#f4f0ff" stroke-width="4" />
+      <path d="M64 92H322M122 92V242" stroke="#f4f0ff" stroke-width="3" />
+      <rect x="140" y="170" width="24" height="56" rx="3" fill="#ff2fdc" stroke="none" /><rect x="176" y="146" width="24" height="80" rx="3" fill="#4a5bff" stroke="none" />
+      <rect x="212" y="186" width="24" height="40" rx="3" fill="#ffc967" stroke="none" /><rect x="248" y="124" width="24" height="102" rx="3" fill="#f4f0ff" stroke="none" />
+      <path d="M140 118L176 108L212 114L272 106" stroke="#f4f0ff" stroke-width="4" />
+      <rect x="342" y="100" width="86" height="156" rx="16" fill="#0b0a29" stroke="#f4f0ff" stroke-width="4" />
+      <path d="M362 132H408M362 156H408M362 180H392" stroke="#4a5bff" stroke-width="5" />
+      <circle cx="385" cy="232" r="7" fill="#ffc967" stroke="none" />
+    </g>
+  )}
+
+  {tipo === 'auto' && (
+    <g fill="none" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M110 214L218 128M262 128L370 214" stroke="#4a5bff" stroke-width="10" />
+      <circle cx="110" cy="214" r="24" fill="#0b0a29" stroke="#f4f0ff" stroke-width="5" />
+      <circle cx="370" cy="214" r="24" fill="#0b0a29" stroke="#f4f0ff" stroke-width="5" />
+      <circle cx="240" cy="108" r="36" fill="#f4f0ff" stroke="none" /><circle cx="240" cy="108" r="29" fill="#100d28" stroke="none" />
+      <image href={infinito.src} x="214" y="82" width="52" height="52" />
+      <rect x="180" y="238" width="120" height="44" rx="12" fill="#0b0a29" stroke="#ffc967" stroke-width="4" />
+      <circle cx="214" cy="260" r="5" fill="#ffc967" stroke="none" /><circle cx="240" cy="260" r="5" fill="#ffc967" stroke="none" /><circle cx="266" cy="260" r="5" fill="#ffc967" stroke="none" />
+    </g>
+  )}
+</svg>
+
+<style>
+  .ilu { display: block; width: 100%; height: auto; }
+</style>

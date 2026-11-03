@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+/* Línea ∞: esmalte azul medianoche, señalética de porcelana y tres tintas de línea. */
+@theme inline {
+  --font-sans: var(--font-barlow);
+  --font-cond: var(--font-barlow-condensed);
+  --font-slab: var(--font-zilla-slab);
+}
+
+@theme {
+  --color-ground: #0b0a29;
+  --color-band: #100d33;
+  --color-sign: #0e0c31;
+  --color-porcelain: #f4f0ff;
+  --color-ink-2: #c9c1ee;
+  --color-lilac: #b9a6ee;
+  --color-aprender: #ff2fdc;
+  --color-construir: #4a5bff;
+  --color-apps: #ffc967;
+}
+
+@layer base {
+  html {
+    background: var(--color-ground);
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    scroll-padding-top: 92px;
+    scrollbar-color: #3b3680 var(--color-ground);
+  }
+  body {
+    background: var(--color-ground);
+    color: var(--color-porcelain);
+    font-family: var(--font-sans);
+    font-size: 18px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    caret-color: var(--color-aprender);
+  }
+  ::selection { background: var(--color-aprender); color: var(--color-ground); }
+  :focus-visible { outline: 2px solid var(--color-apps); outline-offset: 3px; border-radius: 6px; }
+  a { color: inherit; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; }
+  }
+}
+
+@layer components {
+  .skip { position: absolute; left: -9999px; top: 8px; z-index: 100; padding: 10px 16px; background: var(--color-porcelain); color: var(--color-ground); font-weight: 600; border-radius: 8px; }
+  .skip:focus { left: 16px; }
+
+  .wrap { width: 100%; max-width: 1440px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 56px); }
+  .seccion { padding-block: clamp(64px, 9vw, 120px); }
+  .banda { background: var(--color-band); border-block: 1px solid rgba(244, 240, 255, 0.1); }
+
+  .h2 { font-family: var(--font-cond); font-weight: 700; font-size: clamp(40px, 5.4vw, 68px); line-height: 0.96; text-transform: uppercase; letter-spacing: -0.005em; text-wrap: balance; }
+  .h2::after { content: ""; display: block; width: 72px; height: 8px; border-radius: 4px; margin-top: 20px; background: var(--linea, var(--color-aprender)); }
+  .h3 { font-family: var(--font-cond); font-weight: 700; font-size: 32px; line-height: 1; text-transform: uppercase; letter-spacing: 0.01em; }
+  .lead { margin-top: 22px; font-size: 20px; color: var(--color-ink-2); max-width: 58ch; text-wrap: pretty; }
+
+  .tag { display: inline-block; font: 700 15px/1 var(--font-cond); letter-spacing: 0.08em; text-transform: uppercase; padding: 7px 10px 6px; border-radius: 6px; color: var(--color-ground); }
+  .tag-m { background: var(--color-aprender); }
+  .tag-b { background: var(--color-construir); color: #fff; }
+  .tag-a { background: var(--color-apps); }
+  .tag-p { background: var(--color-porcelain); }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 0 22px; border-radius: 8px; border: 2px solid transparent; font-weight: 700; font-size: 19px; line-height: 1; text-decoration: none; cursor: pointer; transition: filter 0.2s, transform 0.2s, background 0.2s, border-color 0.2s; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:active { transform: translateY(0); }
+  .btn-m { background: var(--color-aprender); color: var(--color-ground); }
+  .btn-b { background: var(--color-construir); color: #fff; }
+  .btn-a { background: var(--color-apps); color: var(--color-ground); }
+  .btn-m:hover, .btn-b:hover, .btn-a:hover { filter: brightness(1.1); }
+  .btn-line { border-color: rgba(244, 240, 255, 0.85); color: var(--color-porcelain); background: transparent; }
+  .btn-line:hover { background: rgba(244, 240, 255, 0.1); }
+  .btn-full { width: 100%; }
+
+  .field { width: 100%; height: 46px; padding: 0 14px; border-radius: 8px; border: 2px solid rgba(244, 240, 255, 0.28); background: #0a0927; color: var(--color-porcelain); font: 500 17px var(--font-sans); transition: border-color 0.2s; }
+  .field::placeholder { color: #9f95cf; }
+  .field:hover { border-color: rgba(244, 240, 255, 0.55); }
+  .field:focus-visible { outline: 2px solid var(--color-apps); outline-offset: 2px; border-color: transparent; }
+  .field[aria-invalid="true"] { border-color: #ff8a8a; }
+
+  .sign { padding: 18px 20px 20px; border: 2px solid rgba(244, 240, 255, 0.9); border-radius: 12px; background: var(--color-sign); }
+}

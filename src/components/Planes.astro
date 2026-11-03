@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import Ilustracion from './Ilustracion.astro';
+import { whatsappUrl } from '../config/site';
+
+interface Props { servicios: CollectionEntry<'servicios'>[] }
+const { servicios } = Astro.props;
+const tipos = ['landing', 'app', 'auto'] as const;
+---
+<ul class="planes">
+  {servicios.map((s, i) => (
+    <li class="plan">
+      <div class="plan-vis">
+        {s.data.imagen
+          ? <Image src={s.data.imagen} alt="" widths={[420, 640, 900]} sizes="(min-width: 900px) 380px, 100vw" class="plan-img" />
+          : <Ilustracion tipo={tipos[i] ?? 'landing'} />}
+      </div>
+      <div class="plan-txt">
+        <span class="tag tag-b">{s.data.etiqueta}</span>
+        <h3 class="h3 plan-t">{s.data.titulo}</h3>
+        <p class="plan-d">{s.data.descripcion}</p>
+        <ul class="incluye">{s.data.incluye.map((x) => <li>{x}</li>)}</ul>
+        <p class="entrega"><b>Entrega:</b> {s.data.entrega}</p>
+      </div>
+      <a class="btn btn-b plan-cta" href={whatsappUrl(s.data.mensajeWhatsApp)} target="_blank" rel="noopener noreferrer">Cotiza por WhatsApp</a>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .planes { list-style: none; margin: 40px 0 0; padding: 0; display: grid; }
+  .plan { display: grid; gap: 20px; padding-block: 36px; border-top: 1px solid rgba(244, 240, 255, 0.14); }
+  .plan:last-child { border-bottom: 1px solid rgba(244, 240, 255, 0.14); }
+  .plan-vis :global(img), .plan-vis :global(svg) { display: block; width: 100%; height: auto; border-radius: 18px; }
+  .plan-t { margin-top: 14px; font-size: 40px; }
+  .plan-d { margin-top: 12px; color: var(--color-ink-2); }
+  .incluye { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 9px; }
+  .incluye li { position: relative; padding-left: 26px; }
+  .incluye li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 9px; height: 9px; border-radius: 50%; background: var(--color-porcelain); box-shadow: 0 0 0 3px var(--color-construir); }
+  .entrega { margin-top: 16px; color: var(--color-ink-2); }
+  .plan-cta { width: 100%; }
+  @media (min-width: 900px) {
+    .plan { grid-template-columns: 380px minmax(0, 1fr) 240px; gap: 44px; align-items: start; }
+    .plan-t { margin-top: 0; }
+    .plan-txt { padding-top: 2px; }
+  }
+</style>

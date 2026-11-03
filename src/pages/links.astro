@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Redes from '../components/Redes.astro';
+import saint from '../assets/brand/saint-portafolio.jpg';
+import { site, whatsappUrl } from '../config/site';
+
+const apps = (await getCollection('apps')).filter((a) => a.data.estado === 'disponible' && a.data.url);
+const app = apps[0]?.data;
+---
+<Layout title="Links · saintmrti" description="Todo en un lugar: lista de espera de la Clase 1, cotizaciones, apps y redes." bare>
+  <main class="links">
+    <Image src={saint} alt="Saint-Martín Méndez" width={160} height={160} class="foto" />
+    <h1>{site.nombre}</h1>
+    <p class="linea">{site.linea}</p>
+    <nav class="botones" aria-label="Enlaces principales">
+      <a class="btn btn-m" href="/#lista">Lista de espera: Clase 1 de IA</a>
+      <a class="btn btn-b" href={whatsappUrl('Hola Saint, quiero cotizar una web o una automatización con IA.')} target="_blank" rel="noopener noreferrer">Cotiza una web o automatización</a>
+      {app && <a class="btn btn-a" href={app.url} target="_blank" rel="noopener noreferrer">Abrir {app.nombre}</a>}
+      <a class="btn btn-line" href="/registro">Clases personalizadas de IA</a>
+      <a class="btn btn-line" href={site.portafolio} target="_blank" rel="noopener noreferrer">Mi portafolio</a>
+    </nav>
+    <div class="redes"><Redes /></div>
+    <p class="inicio"><a href="/">saintmrti.com</a></p>
+  </main>
+</Layout>
+
+<style>
+  .links { max-width: 480px; margin: 0 auto; padding: 40px 20px 56px; text-align: center; display: grid; justify-items: center; gap: 0; }
+  .links :global(.foto) { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(244, 240, 255, 0.85); }
+  h1 { margin-top: 18px; font: 700 44px/1 var(--font-barlow-condensed); text-transform: uppercase; }
+  .linea { margin-top: 8px; color: var(--color-ink-2); }
+  .botones { width: 100%; margin-top: 28px; display: grid; gap: 12px; }
+  .botones .btn { width: 100%; min-height: 56px; }
+  .redes { margin-top: 32px; display: flex; justify-content: center; }
+  .inicio { margin-top: 28px; }
+  .inicio a { color: var(--color-lilac); text-underline-offset: 4px; text-decoration: underline; }
+</style>

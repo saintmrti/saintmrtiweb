@@ -1,0 +1,104 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import ListaEspera from '../../components/ListaEspera.astro';
+import Precio from '../../components/Precio.astro';
+import Ilustracion from '../../components/Ilustracion.astro';
+import { site } from '../../config/site';
+
+export async function getStaticPaths() {
+  const clases = await getCollection('clases');
+  return clases.map((c) => ({ params: { slug: c.id }, props: { clase: c } }));
+}
+
+const { clase } = Astro.props;
+const c = clase.data;
+const proximamente = c.estado === 'proximamente';
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Course',
+  name: c.titulo,
+  description: c.descripcion,
+  inLanguage: 'es-MX',
+  timeRequired: 'PT2H',
+  educationalLevel: c.nivel,
+  provider: { '@type': 'Person', name: site.nombre, url: site.url },
+  // Con la clase en "próximamente" no se publica precio: aún no hay fecha de lanzamiento.
+  ...(!proximamente && c.hotmartUrl && c.precio
+    ? { offers: { '@type': 'Offer', priceCurrency: 'MXN', price: c.precio, availability: 'https://schema.org/InStock', url: c.hotmartUrl } }
+    : {}),
+};
+---
+<Layout title={`${c.titulo} · saintmrti`} description={c.descripcion} jsonLd={jsonLd}>
+  <article class="wrap seccion" style="--linea: var(--color-aprender)">
+    <p class="volver"><a href="/clases">← Todas las clases</a></p>
+    <div class="cab">
+      <div>
+        <h1 class="h2">{c.titulo}</h1>
+        <p class="estado"><span class="dot" aria-hidden="true"></span>{proximamente ? 'Próximamente' : 'Disponible'} · Clase grabada · {c.duracion}</p>
+        <p class="lead">{c.resultado}</p>
+        <p class="desc">{c.descripcion}</p>
+      </div>
+      <div class="cover">
+        {c.portada ? <Image src={c.portada} alt="Un guía con armadura original le muestra un infinito luminoso a una mujer que empieza desde cero, en una estación futurista." widths={[480, 800, 1200]} sizes="(min-width: 900px) 540px, 100vw" /> : <Ilustracion tipo="clase" />}
+      </div>
+    </div>
+
+    <div class="det">
+      <div>
+        <h2 class="h3">Lo que verás</h2>
+        <ol class="temario">{c.temario.map((t) => <li>{t}</li>)}</ol>
+        {c.temarioPreliminar && <p class="nota">Temario preliminar: puede ajustarse antes del lanzamiento.</p>}
+      </div>
+      <div>
+        <h2 class="h3">Para quién es</h2>
+        <ul class="paraquien">{c.paraQuien.map((t) => <li>{t}</li>)}</ul>
+        <dl class="datos">
+          <div><dt>Duración</dt><dd>{c.duracion}</dd></div>
+          <div><dt>Nivel</dt><dd>{c.nivel}</dd></div>
+          <div><dt>Plataforma</dt><dd>Hotmart</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="accion">
+      {proximamente
+        ? <>
+            <h2 class="h3">Avísame cuando salga</h2>
+            <p class="nota">Todavía no tiene fecha. Apúntate y te aviso por correo.</p>
+            <ListaEspera id="lista" claseTitulo={c.titulo} />
+          </>
+        : <Precio precio={c.precio} precioLanzamiento={c.precioLanzamiento} lanzamientoHasta={c.lanzamientoHasta} hotmartUrl={c.hotmartUrl} hotmartUrlLanzamiento={c.hotmartUrlLanzamiento} />}
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .volver { margin-bottom: 28px; }
+  .volver a { color: var(--color-ink-2); text-underline-offset: 4px; text-decoration: underline; }
+  .cab, .det { display: grid; gap: 36px; }
+  .det { margin-top: 56px; }
+  .estado { display: flex; align-items: center; gap: 10px; margin-top: 20px; font-weight: 600; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--color-apps); }
+  .desc { margin-top: 16px; color: var(--color-ink-2); max-width: 58ch; }
+  .cover :global(img), .cover :global(svg) { display: block; width: 100%; height: auto; border-radius: 18px; }
+  .temario { list-style: none; counter-reset: t; padding: 0; margin: 20px 0 0; }
+  .temario li { counter-increment: t; display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: baseline; padding: 16px 0; border-top: 1px solid rgba(244, 240, 255, 0.14); }
+  .temario li::before { content: counter(t); font: 700 30px/1 var(--font-barlow-condensed); color: var(--color-aprender); }
+  .nota { margin-top: 14px; color: var(--color-ink-2); font-size: 15px; }
+  .paraquien { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 12px; }
+  .paraquien li { position: relative; padding-left: 26px; }
+  .paraquien li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 9px; height: 9px; border-radius: 50%; background: var(--color-porcelain); box-shadow: 0 0 0 3px var(--color-aprender); }
+  .datos { display: grid; margin-top: 28px; }
+  .datos div { display: flex; justify-content: space-between; gap: 20px; padding: 12px 0; border-top: 1px solid rgba(244, 240, 255, 0.14); }
+  .datos div:last-child { border-bottom: 1px solid rgba(244, 240, 255, 0.14); }
+  .datos dt { color: var(--color-ink-2); }
+  .datos dd { margin: 0; font-weight: 600; }
+  .accion { margin-top: 56px; max-width: 560px; display: grid; gap: 14px; }
+  @media (min-width: 900px) {
+    .cab { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+    .det { grid-template-columns: 1fr 1fr; gap: 56px; }
+  }
+</style>

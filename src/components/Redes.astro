@@ -1,0 +1,23 @@
+---
+import { site } from '../config/site';
+
+const redes = [
+  { nombre: 'Instagram', url: site.redes.instagram },
+  { nombre: 'TikTok', url: site.redes.tiktok },
+  { nombre: 'Facebook', url: site.redes.facebook },
+  { nombre: 'X', url: site.redes.x },
+  { nombre: 'LinkedIn', url: site.redes.linkedin },
+  { nombre: 'GitHub', url: site.redes.github },
+].filter((r) => r.url);
+---
+<ul class="redes" aria-label="Redes">
+  {redes.map((r) => (
+    <li><a href={r.url} target="_blank" rel="noopener noreferrer">{r.nombre}</a></li>
+  ))}
+</ul>
+
+<style>
+  .redes { display: flex; flex-wrap: wrap; gap: 8px 22px; list-style: none; padding: 0; margin: 0; }
+  .redes a { font-weight: 500; text-decoration: underline; text-decoration-color: rgba(244, 240, 255, 0.35); text-underline-offset: 5px; transition: text-decoration-color 0.2s, color 0.2s; }
+  .redes a:hover { color: #fff; text-decoration-color: var(--color-aprender); }
+</style>

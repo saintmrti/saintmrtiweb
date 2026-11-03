@@ -1,11 +1,232 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import LineMap from '../components/LineMap.astro';
+import ListaEspera from '../components/ListaEspera.astro';
+import Ilustracion from '../components/Ilustracion.astro';
+import Planes from '../components/Planes.astro';
+import AppFicha from '../components/AppFicha.astro';
+import Faq from '../components/Faq.astro';
+import Testimonios from '../components/Testimonios.astro';
+import infinito from '../assets/brand/infinito.png';
+import saint from '../assets/brand/saint-portafolio.jpg';
+import banner from '../assets/imagenes/banner-cierre-guia.png';
+import { site, whatsappUrl } from '../config/site';
+import { faq } from '../config/faq';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const clase = (await getCollection('clases')).sort((a, b) => a.data.orden - b.data.orden)[0].data;
+const servicios = (await getCollection('servicios')).sort((a, b) => a.data.orden - b.data.orden);
+const apps = (await getCollection('apps')).sort((a, b) => a.data.orden - b.data.orden);
+const app = apps[0]?.data;
+// Los testimonios de ejemplo (muestra: true) solo existen en desarrollo.
+const testimonios = (await getCollection('testimonios'))
+  .filter((t) => import.meta.env.DEV || !t.data.muestra)
+  .sort((a, b) => a.data.orden - b.data.orden);
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: site.nombre,
+    alternateName: site.usuario,
+    url: site.url,
+    jobTitle: 'Desarrollador full stack',
+    sameAs: [site.redes.instagram, site.redes.facebook, site.redes.x, site.redes.linkedin, site.redes.github, site.redes.tiktok].filter(Boolean),
+  },
+  { '@context': 'https://schema.org', '@type': 'WebSite', name: `${site.nombre} · ${site.usuario}`, url: site.url, inLanguage: 'es-MX' },
+];
+
+const estadoClase = clase.estado === 'proximamente' ? 'Próximamente' : 'Disponible';
 ---
+<Layout jsonLd={jsonLd}>
+  <div class="hero-bg">
+    <section class="wrap hero" aria-labelledby="hero-t">
+      <div class="hero-txt">
+        <h1 id="hero-t">De cero<br />a construir<br />con <span class="m">IA</span></h1>
+        <p class="sub">Empieza con una clase de unas 2 horas, sin tecnicismos, con un programador que usa IA todos los días. La línea sigue hasta que quieras construir algo real.</p>
+        <div class="hero-form"><ListaEspera id="lista" claseTitulo={clase.titulo} /></div>
+        <a class="alt" href={whatsappUrl('Hola Saint, quiero cotizar una web o una automatización con IA.')} target="_blank" rel="noopener noreferrer">
+          <span>¿Buscas una web o automatización con IA?</span>
+          <b>Cotiza por WhatsApp</b>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffc967" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+        </a>
+      </div>
+      <div class="hero-mapa">
+        <LineMap
+          clase={{ tituloCorto: clase.tituloCorto, estado: clase.estado, duracion: clase.duracion }}
+          servicios={servicios.map((s) => ({ tituloCorto: s.data.tituloCorto, etiqueta: s.data.etiqueta }))}
+          app={app ? { nombre: app.nombre, version: app.version } : undefined}
+        />
+      </div>
+    </section>
+  </div>
 
-<Layout>
-	<Welcome />
+  <section id="clase" class="seccion" style="--linea: var(--color-aprender)">
+    <div class="wrap clase-grid">
+      <div>
+        <h2 class="h2">{clase.titulo}</h2>
+        <p class="estado"><span class="dot" aria-hidden="true"></span>{estadoClase} · Clase grabada · {clase.duracion}</p>
+        <p class="lead">{clase.descripcion}</p>
+        <dl class="datos">
+          <div><dt>Duración</dt><dd>{clase.duracion}</dd></div>
+          <div><dt>Formato</dt><dd>Clase grabada</dd></div>
+          <div><dt>Nivel</dt><dd>{clase.nivel}</dd></div>
+          <div><dt>Plataforma</dt><dd>Hotmart</dd></div>
+        </dl>
+      </div>
+      <div class="cover">
+        {clase.portada
+          ? <Image src={clase.portada} alt="Un guía con armadura original le muestra un infinito luminoso a una mujer que empieza desde cero, en una estación futurista." widths={[480, 800, 1200]} sizes="(min-width: 900px) 540px, 100vw" />
+          : <Ilustracion tipo="clase" />}
+      </div>
+    </div>
+    <div class="wrap clase-det">
+      <div>
+        <h3 class="h3">Lo que verás</h3>
+        <ol class="temario">{clase.temario.map((t) => <li>{t}</li>)}</ol>
+        {clase.temarioPreliminar && <p class="nota">Temario preliminar: puede ajustarse antes del lanzamiento.</p>}
+      </div>
+      <div>
+        <h3 class="h3">Para quién es</h3>
+        <ul class="paraquien">{clase.paraQuien.map((t) => <li>{t}</li>)}</ul>
+        <p class="cta-clase"><a class="btn btn-m" href="#lista">Apuntarme a la lista de espera</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" class="seccion banda" style="--linea: var(--color-construir)">
+    <div class="wrap">
+      <div class="lockup">
+        <Image src={infinito} alt="" width={64} height={64} class="lockup-mark" />
+        <div><span class="slab">SAINT</span><span class="tech">TECHNOLOGY</span></div>
+      </div>
+      <h2 class="h2">Desarrollo de productos web y automatización con IA</h2>
+      <p class="lead">Para PyMEs mexicanas, profesionales independientes y startups. Cada proyecto se cotiza según lo que necesitas.</p>
+      <Planes servicios={servicios} />
+      <p class="proceso">Cada plan incluye 3 videollamadas (para definir lo que necesitas, revisar avances a mitad del camino y presentar el resultado final) y atención personalizada por WhatsApp.</p>
+    </div>
+  </section>
+
+  {app && (
+    <section id="apps" class="seccion" style="--linea: var(--color-apps)">
+      <div class="wrap">
+        <h2 class="h2">Mis apps</h2>
+        <div class="apps-cont"><AppFicha app={app} /></div>
+      </div>
+    </section>
+  )}
+
+  <section id="sobre-mi" class="seccion banda" style="--linea: var(--color-aprender)">
+    <div class="wrap sobre-grid">
+      <Image src={saint} alt="Saint-Martín Méndez" width={520} height={520} class="foto" widths={[360, 520, 800]} sizes="(min-width: 900px) 420px, 100vw" />
+      <div>
+        <h2 class="h2">Sobre mí</h2>
+        <p class="lead">Soy Saint-Martín Méndez, desarrollador full stack con más de 4 años de experiencia. Construyo aplicaciones web escalables con React, Next.js, TypeScript, Node.js y SQL, y uso inteligencia artificial todos los días para hacerlo mejor.</p>
+        <p class="sobre-p">He trabajado en 3 grandes compañías y en otros proyectos para empresas privadas. Por confidencialidad no puedo nombrarlas; en mi portafolio muestro parte de ese trabajo sin nombres de empresas.</p>
+        <p class="sobre-p">Aquí enseño lo que aplico: primero la clase para entender la IA y, cuando quieras construir algo, Saint Technology.</p>
+        <p class="sobre-acc"><a class="btn btn-line" href={site.portafolio} target="_blank" rel="noopener noreferrer">Ver mi portafolio</a></p>
+      </div>
+    </div>
+  </section>
+
+  {testimonios.length > 0 && (
+    <section id="testimonios" class="seccion" style="--linea: var(--color-apps)">
+      <div class="wrap">
+        <h2 class="h2">Lo que dicen</h2>
+        <Testimonios items={testimonios} />
+      </div>
+    </section>
+  )}
+
+  <section id="preguntas" class="seccion" style="--linea: var(--color-construir)">
+    <div class="wrap">
+      <div class="faq-wrap">
+        <h2 class="h2">Preguntas frecuentes</h2>
+        <Faq items={faq} />
+      </div>
+    </div>
+  </section>
+
+  <section class="cierre banda" aria-labelledby="cierre-t">
+    <Image src={banner} alt="" widths={[640, 1200, 1800]} sizes="100vw" class="cierre-img" />
+    <div class="wrap cierre-grid seccion">
+      <div>
+        <h2 class="h2" id="cierre-t">Empieza por la Clase 1</h2>
+        <p class="lead">Déjame tu correo y te aviso cuando salga. Si lo que buscas es construir algo, escríbeme.</p>
+        <p class="cierre-acc"><a class="btn btn-line" href={whatsappUrl('Hola Saint, vi tu sitio y quiero platicar.')} target="_blank" rel="noopener noreferrer">Escríbeme por WhatsApp</a></p>
+      </div>
+      <ListaEspera id="lista-cierre" claseTitulo={clase.titulo} />
+    </div>
+  </section>
 </Layout>
+
+<style>
+  /* Mobile first: base para celular, min-width hacia arriba. */
+  .hero-bg { background: radial-gradient(60% 50% at 78% 38%, rgba(74, 91, 255, 0.16), transparent 70%), radial-gradient(50% 45% at 12% 0%, rgba(255, 47, 220, 0.1), transparent 70%); border-bottom: 1px solid rgba(244, 240, 255, 0.1); }
+  .hero { display: grid; gap: 40px; padding-block: 28px 48px; }
+  h1 { font: 700 clamp(56px, 16vw, 76px) / 0.92 var(--font-barlow-condensed); text-transform: uppercase; letter-spacing: -0.005em; }
+  h1 .m { color: var(--color-aprender); }
+  .sub { margin-top: 20px; font-size: 19px; color: var(--color-ink-2); max-width: 32em; }
+  .hero-form { margin-top: 24px; max-width: 560px; }
+  .alt { display: block; margin-top: 20px; color: var(--color-ink-2); font-weight: 500; text-underline-offset: 4px; }
+  .alt span { display: block; text-decoration: underline; }
+  .alt b { color: var(--color-porcelain); font-weight: 600; text-decoration: underline; }
+  .alt svg { display: inline; vertical-align: -4px; margin-left: 6px; }
+
+  .clase-grid, .clase-det { display: grid; gap: 36px; }
+  .clase-det { margin-top: 56px; }
+  .estado { display: flex; align-items: center; gap: 10px; margin-top: 20px; font-weight: 600; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--color-apps); }
+  .datos { display: grid; gap: 0; margin-top: 28px; }
+  .datos div { display: flex; justify-content: space-between; gap: 20px; padding: 12px 0; border-top: 1px solid rgba(244, 240, 255, 0.14); }
+  .datos div:last-child { border-bottom: 1px solid rgba(244, 240, 255, 0.14); }
+  .datos dt { color: var(--color-ink-2); }
+  .datos dd { margin: 0; font-weight: 600; text-align: right; }
+  .cover :global(img), .cover :global(svg) { display: block; width: 100%; height: auto; border-radius: 18px; }
+  .temario { list-style: none; counter-reset: t; padding: 0; margin: 20px 0 0; }
+  .temario li { counter-increment: t; display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: baseline; padding: 16px 0; border-top: 1px solid rgba(244, 240, 255, 0.14); }
+  .temario li::before { content: counter(t); font: 700 30px/1 var(--font-barlow-condensed); color: var(--color-aprender); }
+  .nota { margin-top: 16px; color: var(--color-ink-2); font-size: 15px; }
+  .paraquien { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 12px; }
+  .paraquien li { position: relative; padding-left: 26px; }
+  .paraquien li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 9px; height: 9px; border-radius: 50%; background: var(--color-porcelain); box-shadow: 0 0 0 3px var(--color-aprender); }
+  .cta-clase { margin-top: 32px; }
+  .cta-clase .btn { width: 100%; }
+
+  .lockup { display: flex; align-items: center; gap: 16px; margin-bottom: 36px; }
+  .lockup :global(.lockup-mark) { width: 64px; height: 64px; }
+  .slab { display: block; font: 700 34px/1 var(--font-zilla-slab); letter-spacing: 0.14em; }
+  .tech { display: block; margin-top: 6px; font: 500 14px var(--font-barlow); letter-spacing: 0.42em; color: var(--color-lilac); }
+  .proceso { margin-top: 32px; max-width: 62ch; color: var(--color-ink-2); }
+
+  .apps-cont { margin-top: 40px; }
+
+  .sobre-grid { display: grid; gap: 36px; }
+  .sobre-grid :global(.foto) { width: 100%; max-width: 420px; height: auto; border-radius: 18px; border: 2px solid rgba(244, 240, 255, 0.85); }
+  .sobre-p { margin-top: 18px; color: var(--color-ink-2); max-width: 58ch; }
+  .sobre-acc { margin-top: 28px; }
+
+  .faq-wrap { max-width: 900px; }
+
+  .cierre { border-bottom: 0; }
+  .cierre :global(.cierre-img) { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+  .cierre-grid { display: grid; gap: 36px; }
+  .cierre-acc { margin-top: 24px; }
+
+  @media (min-width: 640px) {
+    .cta-clase .btn { width: auto; }
+  }
+  @media (min-width: 900px) {
+    .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 700px); column-gap: 40px; align-items: center; min-height: max(820px, calc(100svh - 76px)); padding-block: 28px 40px; }
+    h1 { font-size: clamp(72px, 6.7vw, 96px); }
+    .sub { margin-top: 22px; font-size: 20px; }
+    .alt { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0 8px; }
+    .alt span { display: inline; }
+    .clase-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+    .clase-det { grid-template-columns: 1fr 1fr; gap: 56px; }
+    .sobre-grid { grid-template-columns: 420px minmax(0, 1fr); gap: 64px; align-items: center; }
+    .cierre :global(.cierre-img) { aspect-ratio: 21 / 9; }
+    .cierre-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+  }
+</style>

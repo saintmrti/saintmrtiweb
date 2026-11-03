@@ -1,0 +1,127 @@
+---
+import { site, whatsappUrl, listaEsperaConfigurada } from '../config/site';
+
+interface Props { id: string; claseTitulo?: string }
+const { id, claseTitulo = 'Introducción a la era de la inteligencia artificial' } = Astro.props;
+
+const cfg = site.formularios.listaEspera;
+// En desarrollo se simula el envío. En producción, sin Google Form conectado, se ofrece WhatsApp.
+const modo = listaEsperaConfigurada ? 'google' : import.meta.env.DEV ? 'simulado' : 'whatsapp';
+const mensajeWa = `Hola Saint, quiero apuntarme a la lista de espera de la clase «${claseTitulo}».`;
+---
+{modo === 'whatsapp' ? (
+  <div class="sign" id={id}>
+    <div class="sign-top"><span class="tag tag-m">Aprender</span><span class="sign-t">Clase 1 · Próximamente</span></div>
+    <p class="fine-top">La lista de espera abre muy pronto. Mientras tanto, apúntate por WhatsApp y te aviso cuando salga la clase.</p>
+    <a class="btn btn-m btn-full" href={whatsappUrl(mensajeWa)} target="_blank" rel="noopener noreferrer">Apuntarme por WhatsApp</a>
+  </div>
+) : (
+  <form
+    class="sign lista"
+    id={id}
+    novalidate
+    data-lista-espera
+    data-modo={modo}
+    data-endpoint={cfg.formResponse}
+    data-entry-nombre={cfg.entradas.nombre}
+    data-entry-correo={cfg.entradas.correo}
+    data-entry-whatsapp={cfg.entradas.whatsapp}
+    data-ver-form={cfg.verForm}
+    aria-label="Lista de espera de la Clase 1"
+  >
+    <div class="sign-top"><span class="tag tag-m">Aprender</span><span class="sign-t">Clase 1 · Próximamente</span></div>
+    <div class="campos">
+      <div class="row">
+        <label class="sr-only" for={`${id}-n`}>Nombre</label>
+        <input class="field" id={`${id}-n`} name="nombre" autocomplete="given-name" placeholder="Tu nombre" required />
+        <label class="sr-only" for={`${id}-c`}>Correo</label>
+        <input class="field" id={`${id}-c`} name="correo" type="email" autocomplete="email" placeholder="Tu correo" required />
+      </div>
+      <input class="hp" type="text" name="web" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <button class="btn btn-m btn-full" type="submit">
+        <span data-texto>Avísame cuando salga</span>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+      </button>
+    </div>
+    <p class="exito" role="status" hidden>Listo, quedaste en la lista. Te escribo cuando salga la clase.</p>
+    <p class="fine" data-estado aria-live="polite">Al apuntarte aceptas el <a href="/privacidad">aviso de privacidad</a>.</p>
+  </form>
+)}
+
+<style>
+  .sign-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .sign-t { font: 600 18px var(--font-barlow); }
+  .row { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 10px; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .fine, .fine-top { margin-top: 10px; font-size: 14px; color: var(--color-ink-2); }
+  .fine-top { margin: 0 0 14px; font-size: 16px; }
+  .fine a { text-decoration: underline; text-underline-offset: 3px; }
+  .fine[data-error="true"] { color: #ffb3b3; }
+  .exito { margin: 4px 0 0; font: 600 20px/1.3 var(--font-barlow); color: var(--color-porcelain); }
+  .lista[data-ok="true"] .campos { display: none; }
+  .lista[data-ok="true"] .fine { display: none; }
+  button[disabled] { opacity: 0.7; cursor: progress; }
+  @media (min-width: 560px) { .row { grid-template-columns: 1fr 1fr; } }
+</style>
+
+<script>
+  const forms = document.querySelectorAll<HTMLFormElement>('form[data-lista-espera]');
+
+  forms.forEach((form) => {
+    const estado = form.querySelector<HTMLElement>('[data-estado]')!;
+    const exito = form.querySelector<HTMLElement>('.exito')!;
+    const boton = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const texto = form.querySelector<HTMLElement>('[data-texto]')!;
+    const nombre = form.elements.namedItem('nombre') as HTMLInputElement;
+    const correo = form.elements.namedItem('correo') as HTMLInputElement;
+    const trampa = form.elements.namedItem('web') as HTMLInputElement;
+    const original = texto.textContent ?? '';
+
+    const aviso = (mensaje: string, error = false) => {
+      estado.textContent = mensaje;
+      estado.dataset.error = String(error);
+    };
+    const exitoso = () => {
+      form.dataset.ok = 'true';
+      exito.hidden = false;
+      document.documentElement.dataset.enLista = 'true';
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (trampa.value) return exitoso();
+
+      const nombreOk = nombre.value.trim().length >= 2;
+      const correoOk = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(correo.value.trim());
+      nombre.setAttribute('aria-invalid', String(!nombreOk));
+      correo.setAttribute('aria-invalid', String(!correoOk));
+      if (!nombreOk || !correoOk) {
+        aviso('Escribe tu nombre y un correo válido para apuntarte.', true);
+        (nombreOk ? correo : nombre).focus();
+        return;
+      }
+
+      boton.disabled = true;
+      texto.textContent = 'Enviando…';
+      aviso('');
+
+      try {
+        if (form.dataset.modo === 'google') {
+          const datos = new FormData();
+          datos.append(form.dataset.entryNombre!, nombre.value.trim());
+          datos.append(form.dataset.entryCorreo!, correo.value.trim());
+          await fetch(form.dataset.endpoint!, { method: 'POST', mode: 'no-cors', body: datos });
+        } else {
+          await new Promise((r) => setTimeout(r, 700)); // modo simulado (desarrollo)
+        }
+        exitoso();
+      } catch {
+        boton.disabled = false;
+        texto.textContent = original;
+        const alterno = form.dataset.verForm;
+        estado.innerHTML = 'No pude enviarlo. ' + (alterno ? `<a href="${alterno}" target="_blank" rel="noopener noreferrer">Apúntate aquí</a> o inténtalo de nuevo.` : 'Inténtalo de nuevo en un momento.');
+        estado.dataset.error = 'true';
+      }
+    });
+  });
+</script>

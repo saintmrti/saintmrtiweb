@@ -1,0 +1,104 @@
+---
+import infinito from '../assets/brand/infinito.png';
+
+interface Props {
+  clase: { tituloCorto: string; estado: 'proximamente' | 'disponible'; duracion: string };
+  servicios: { tituloCorto: string; etiqueta: string }[];
+  app?: { nombre: string; version?: string };
+}
+
+const { clase, servicios, app } = Astro.props;
+const [s1, s2, s3] = servicios;
+const planeada = clase.estado === 'proximamente';
+const estadoClase = planeada ? 'Próximamente' : 'Disponible';
+---
+<div class="mapa">
+  <svg class="map" viewBox="0 0 700 780" role="img" aria-labelledby="mapa-t mapa-d">
+    <title id="mapa-t">Diagrama de líneas de saintmrti</title>
+    <desc id="mapa-d">La línea Aprender va de la Clase 1 a las clases personalizadas. Ahí hay un transbordo a la línea Construir, con los servicios de Saint Technology, y a la línea Apps.</desc>
+
+    <g class="calles" fill="none" stroke="rgba(244,240,255,.05)" stroke-width="2">
+      <path d="M0 230H700M0 520H700M80 0V780M540 0V780" />
+      <path d="M0 700L330 370M380 780L700 460" />
+    </g>
+
+    <g class="casing" fill="none" stroke="#0b0a29" stroke-width="28" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M150 80V230L330 410" /><path d="M330 410L400 480V700" /><path d="M330 410L250 490V600" />
+    </g>
+
+    <g class="ln ln-m">
+      {planeada ? (
+        <>
+          <path class="plan" d="M150 80V230L290 370" fill="none" stroke="#ff2fdc" stroke-width="16" stroke-linejoin="round" stroke-dasharray="22 14" />
+          <path d="M290 370L330 410" fill="none" stroke="#ff2fdc" stroke-width="16" stroke-linejoin="round" />
+        </>
+      ) : (
+        <path d="M150 80V230L330 410" fill="none" stroke="#ff2fdc" stroke-width="16" stroke-linejoin="round" />
+      )}
+      <circle class="st-clase" cx="150" cy="80" r="11" fill={planeada ? '#0b0a29' : '#f4f0ff'} stroke="#ff2fdc" stroke-width="5" />
+      <circle class="pulse" cx="150" cy="80" r="11" fill="none" stroke="#ff2fdc" stroke-width="3" />
+      <circle cx="150" cy="200" r="11" fill="#0b0a29" stroke="#ff2fdc" stroke-width="5" />
+      <g class="tag-aqui">
+        <rect x="80" y="14" width="140" height="30" rx="6" fill="#f4f0ff" /><path d="M142 44H158L150 56Z" fill="#f4f0ff" />
+        <text class="tagt" x="150" y="35" text-anchor="middle" fill="#0b0a29">ESTÁS AQUÍ</text>
+      </g>
+      <g class="tag-listo">
+        <rect x="12" y="14" width="276" height="30" rx="6" fill="#f4f0ff" /><path d="M142 44H158L150 56Z" fill="#f4f0ff" />
+        <text class="tagt" x="150" y="35" text-anchor="middle" fill="#0b0a29">YA ESTÁS EN LA LISTA</text>
+      </g>
+      <rect x="14" y="120" width="116" height="28" rx="6" fill="#ff2fdc" /><text class="tagt" x="72" y="140" text-anchor="middle" fill="#0b0a29">APRENDER</text>
+      <text class="l1" x="184" y="86">Clase 1: {clase.tituloCorto}</text><text class="l2" x="184" y="110">{estadoClase} · {clase.duracion}</text>
+      <text class="l1" x="184" y="206">Más clases</text><text class="l2" x="184" y="230">En preparación</text>
+    </g>
+
+    <g class="ln ln-b">
+      <path d="M330 410L400 480V700" fill="none" stroke="#4a5bff" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" />
+      {[540, 620, 700].map((y) => <circle cx="400" cy={y} r="11" fill="#f4f0ff" stroke="#0b0a29" stroke-width="4" />)}
+      {s1 && <><text class="l1" x="432" y="546">{s1.tituloCorto}</text><text class="l2" x="432" y="570">{s1.etiqueta}</text></>}
+      {s2 && <><text class="l1" x="432" y="626">{s2.tituloCorto}</text><text class="l2" x="432" y="650">{s2.etiqueta}</text></>}
+      {s3 && <><text class="l1" x="432" y="706">{s3.tituloCorto}</text><text class="l2" x="432" y="730">{s3.etiqueta}</text></>}
+      <rect x="340" y="748" width="136" height="28" rx="6" fill="#4a5bff" /><text class="tagt" x="408" y="768" text-anchor="middle" fill="#ffffff">CONSTRUIR</text>
+    </g>
+
+    {app && (
+      <g class="ln ln-a">
+        <path d="M330 410L250 490V600" fill="none" stroke="#ffc967" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" />
+        <circle cx="250" cy="600" r="11" fill="#f4f0ff" stroke="#0b0a29" stroke-width="4" />
+        <text class="l1" x="218" y="594" text-anchor="end">{app.nombre}</text>
+        {app.version && <text class="l2" x="218" y="618" text-anchor="end">{app.version}</text>}
+        <rect x="214" y="636" width="72" height="28" rx="6" fill="#ffc967" /><text class="tagt" x="250" y="656" text-anchor="middle" fill="#0b0a29">APPS</text>
+      </g>
+    )}
+
+    <g class="hub">
+      <circle cx="330" cy="410" r="36" fill="#f4f0ff" stroke="#0b0a29" stroke-width="5" />
+      <circle cx="330" cy="410" r="29" fill="#100d28" />
+      <image href={infinito.src} x="303" y="383" width="54" height="54" />
+      <text class="l1" x="284" y="404" text-anchor="end">Personalizadas</text>
+      <text class="l2" x="284" y="428" text-anchor="end">Clases 1 a 1 · disponible</text>
+    </g>
+  </svg>
+  <p class="leyenda"><span class="dash" aria-hidden="true"></span>Línea punteada: en preparación</p>
+</div>
+
+<style>
+  .map { display: block; width: 100%; height: auto; }
+  .l1 { font: 600 31px var(--font-barlow); fill: #f4f0ff; }
+  .l2 { font: 500 22px var(--font-barlow); fill: #b9a6ee; }
+  .tagt { font: 700 21px var(--font-barlow-condensed); letter-spacing: 0.08em; }
+  .plan { animation: march 1.8s linear infinite; }
+  .pulse { transform-box: fill-box; transform-origin: center; animation: pulse 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
+  .ln { transition: opacity 0.25s; }
+  .mapa:has(.ln:hover) .ln:not(:hover) { opacity: 0.3; }
+  .tag-listo { display: none; }
+  :global([data-en-lista]) .tag-aqui { display: none; }
+  :global([data-en-lista]) .tag-listo { display: inline; }
+  :global([data-en-lista]) .pulse { animation: none; opacity: 0; }
+  :global([data-en-lista]) .st-clase { fill: #f4f0ff; }
+  .leyenda { display: flex; align-items: center; gap: 10px; margin-top: 6px; font: 500 15px var(--font-barlow); color: var(--color-ink-2); }
+  .dash { width: 34px; height: 0; border-top: 5px dashed var(--color-aprender); }
+  @keyframes march { to { stroke-dashoffset: -36; } }
+  @keyframes pulse { 0% { transform: scale(1); opacity: 0.9; } 100% { transform: scale(2.9); opacity: 0; } }
+  @media (min-width: 900px) { .l1 { font-size: 24px; } .l2 { font-size: 17px; } .tagt { font-size: 16px; } .map { max-height: calc(100vh - 140px); } }
+  @media (prefers-reduced-motion: reduce) { .plan, .pulse { animation: none; } }
+</style>

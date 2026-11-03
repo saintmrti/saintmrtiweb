@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import AppFicha from '../components/AppFicha.astro';
+
+const apps = (await getCollection('apps')).sort((a, b) => a.data.orden - b.data.orden);
+// Sin apps, la sección no existe: vuelve al inicio.
+if (apps.length === 0) return Astro.redirect('/');
+---
+<Layout title="Apps · saintmrti" description="Las apps que construyo y uso: Money Manager y lo que viene.">
+  <section class="wrap seccion" style="--linea: var(--color-apps)">
+    <h1 class="h2">Mis apps</h1>
+    <div class="lista">{apps.map((a) => <AppFicha app={a.data} />)}</div>
+  </section>
+</Layout>
+
+<style>
+  .lista { margin-top: 40px; display: grid; gap: 64px; }
+</style>
