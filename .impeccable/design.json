@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-03T00:00:00Z",
+  "title": "Design System: saintmrti.com",
+  "extensions": {
+    "colorMeta": {
+      "ground": {"role": "neutral", "displayName": "Esmalte Medianoche", "canonical": "#0b0a29", "tonalRamp": ["#050416", "#0b0a29", "#100d33", "#1b1752", "#2b2680", "#3b3680", "#6a62b8", "#a79fd8"]},
+      "band": {"role": "neutral", "displayName": "Banda Violeta", "canonical": "#100d33", "tonalRamp": ["#050416", "#0b0a29", "#100d33", "#1b1752", "#2b2680", "#3b3680", "#6a62b8", "#a79fd8"]},
+      "sign": {"role": "neutral", "displayName": "Placa de Señal", "canonical": "#0e0c31", "tonalRamp": ["#050416", "#0b0a29", "#0e0c31", "#1b1752", "#2b2680", "#3b3680", "#6a62b8", "#a79fd8"]},
+      "porcelain": {"role": "neutral", "displayName": "Porcelana", "canonical": "#f4f0ff", "tonalRamp": ["#3b3680", "#6a62b8", "#8f86cf", "#b9a6ee", "#c9c1ee", "#ddd7f6", "#ece8fb", "#f4f0ff"]},
+      "ink-2": {"role": "neutral", "displayName": "Tinta Dos", "canonical": "#c9c1ee", "tonalRamp": ["#3b3680", "#5a53a3", "#7a72bf", "#9f95cf", "#b9a6ee", "#c9c1ee", "#ddd7f6", "#f4f0ff"]},
+      "lilac": {"role": "neutral", "displayName": "Lila", "canonical": "#b9a6ee", "tonalRamp": ["#2b2680", "#4a3fa0", "#6a58c4", "#8a78dc", "#b9a6ee", "#cfc2f4", "#e2d9f9", "#f4f0ff"]},
+      "aprender": {"role": "primary", "displayName": "Magenta Aprender", "canonical": "#ff2fdc", "tonalRamp": ["#4a0a40", "#7d1070", "#b01aa0", "#e022c4", "#ff2fdc", "#ff6be6", "#ffa3ef", "#ffd6f8"]},
+      "construir": {"role": "secondary", "displayName": "Azul Construir", "canonical": "#4a5bff", "tonalRamp": ["#0e1250", "#1a2090", "#2a38d0", "#4a5bff", "#7482ff", "#9ca6ff", "#c4caff", "#e6e9ff"]},
+      "apps": {"role": "tertiary", "displayName": "Ámbar Apps", "canonical": "#ffc967", "tonalRamp": ["#4a3200", "#7d5400", "#b57b0a", "#e5a02c", "#ffc967", "#ffd88c", "#ffe8b8", "#fff5dd"]}
+    },
+    "typographyMeta": {
+      "display": {"displayName": "Display", "purpose": "H1 de la entrada, mayúsculas."},
+      "headline": {"displayName": "Headline", "purpose": "H2 de sección con barra de color de línea."},
+      "title": {"displayName": "Title", "purpose": "H3, servicios y apps."},
+      "body": {"displayName": "Body", "purpose": "Texto corrido en Barlow."},
+      "label": {"displayName": "Label", "purpose": "Etiquetas de línea."},
+      "wordmark": {"displayName": "Wordmark", "purpose": "Sello SAINT TECHNOLOGY, único uso de Zilla Slab."}
+    },
+    "shadows": [
+      {"name": "line-ring", "value": "0 0 0 3px var(--linea-color)", "purpose": "Anillo sin desenfoque alrededor de viñetas de porcelana. No hay otra sombra."}
+    ],
+    "motion": [
+      {"name": "march", "value": "1.8s linear infinite", "purpose": "Punteado de la línea en preparación."},
+      {"name": "pulse", "value": "2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite", "purpose": "Anillo de Estás aquí; se detiene al apuntarse."},
+      {"name": "state", "value": "0.2s", "purpose": "Transiciones de botón, campo y enlace; 0.25s para atenuar líneas del mapa."}
+    ],
+    "breakpoints": [
+      {"name": "form-row", "value": "560px"},
+      {"name": "actions", "value": "640px"},
+      {"name": "footer", "value": "800px"},
+      {"name": "layout", "value": "900px"}
+    ]
+  },
+  "components": [
+    {"name": "Primary Button", "kind": "button", "refersTo": "button-primary", "description": "Acción de lista de espera.", "html": "<a class=\"ds-btn ds-btn-m\" href=\"#\">Apuntarme a la lista de espera</a>", "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 22px;border-radius:8px;border:2px solid transparent;font:700 19px/1 Barlow,system-ui,sans-serif;text-decoration:none;transition:filter .2s,transform .2s}.ds-btn-m{background:#ff2fdc;color:#0b0a29}.ds-btn:hover{filter:brightness(1.1);transform:translateY(-1px)}.ds-btn:focus-visible{outline:2px solid #ffc967;outline-offset:3px}"},
+    {"name": "Line Button", "kind": "button", "refersTo": "button-line", "description": "Acción secundaria de contorno.", "html": "<a class=\"ds-btn-line\" href=\"#\">Escríbeme por WhatsApp</a>", "css": ".ds-btn-line{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 22px;border-radius:8px;border:2px solid rgba(244,240,255,.85);color:#f4f0ff;background:transparent;font:700 19px/1 Barlow,system-ui,sans-serif;text-decoration:none;transition:background .2s}.ds-btn-line:hover{background:rgba(244,240,255,.1)}.ds-btn-line:focus-visible{outline:2px solid #ffc967;outline-offset:3px}"},
+    {"name": "Construir Button", "kind": "button", "refersTo": "button-construir", "description": "Cotizar servicios.", "html": "<a class=\"ds-btn-b\" href=\"#\">Cotiza por WhatsApp</a>", "css": ".ds-btn-b{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 22px;border-radius:8px;background:#4a5bff;color:#fff;font:700 19px/1 Barlow,system-ui,sans-serif;text-decoration:none;transition:filter .2s,transform .2s}.ds-btn-b:hover{filter:brightness(1.1);transform:translateY(-1px)}.ds-btn-b:focus-visible{outline:2px solid #ffc967;outline-offset:3px}"},
+    {"name": "Field", "kind": "input", "refersTo": "field", "description": "Campo de formulario sobre placa.", "html": "<input class=\"ds-field\" placeholder=\"Tu correo\" />", "css": ".ds-field{width:100%;height:46px;padding:0 14px;border-radius:8px;border:2px solid rgba(244,240,255,.28);background:#0a0927;color:#f4f0ff;font:500 17px Barlow,system-ui,sans-serif;transition:border-color .2s}.ds-field::placeholder{color:#9f95cf}.ds-field:hover{border-color:rgba(244,240,255,.55)}.ds-field:focus-visible{outline:2px solid #ffc967;outline-offset:2px;border-color:transparent}"},
+    {"name": "Sign", "kind": "card", "refersTo": "sign", "description": "Placa de señal del formulario.", "html": "<div class=\"ds-sign\"><span class=\"ds-tag\">APRENDER</span> <b>Clase 1 · Próximamente</b></div>", "css": ".ds-sign{padding:18px 20px 20px;border:2px solid rgba(244,240,255,.9);border-radius:12px;background:#0e0c31;color:#f4f0ff;font:600 18px Barlow,system-ui,sans-serif}.ds-tag{display:inline-block;font:700 15px/1 'Barlow Condensed',sans-serif;letter-spacing:.08em;padding:7px 10px 6px;border-radius:6px;background:#ff2fdc;color:#0b0a29}"},
+    {"name": "Nav Pill", "kind": "nav", "refersTo": "nav-pill", "description": "Tira de secciones en celular.", "html": "<a class=\"ds-pill\" href=\"#\">Servicios</a>", "css": ".ds-pill{display:inline-block;padding:7px 14px;border:1.5px solid rgba(244,240,255,.28);border-radius:999px;font:500 15px Barlow,system-ui,sans-serif;color:#c9c1ee;text-decoration:none;transition:border-color .2s,color .2s}.ds-pill:hover{color:#fff;border-color:#ff2fdc}.ds-pill:focus-visible{outline:2px solid #ffc967;outline-offset:3px}"},
+    {"name": "Line Tag", "kind": "chip", "refersTo": "tag", "description": "Etiqueta de línea.", "html": "<span class=\"ds-tag-b\">AUTOMATIZACIÓN</span>", "css": ".ds-tag-b{display:inline-block;font:700 15px/1 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:7px 10px 6px;border-radius:6px;background:#4a5bff;color:#fff}"}
+  ],
+  "narrative": {
+    "northStar": "La Línea Infinito",
+    "overview": "La oferta de Saint es un recorrido (aprender, construir, apps) y el infinito de su marca es el transbordo. Esmalte azul medianoche, señalética de porcelana y tres tintas de línea; el mapa manda solo en la entrada y el resto son secciones normales con los mismos tokens.",
+    "keyCharacteristics": ["Fondo único de esmalte oscuro; porcelana como tinta de señal.", "Tres colores de línea con significado fijo.", "Color plano y bordes de 2px; sin glow, glass ni sombras decorativas.", "Mobile first, salto de diseño a 900px.", "Honestidad como regla de diseño."],
+    "rules": [
+      {"name": "The Line-Meaning Rule", "body": "Cada color de línea significa una sola cosa y se declara con --linea.", "section": "colors"},
+      {"name": "The Enamel Rule", "body": "El contraste viene de la porcelana y de tintas planas, nunca de sombras o brillos.", "section": "colors"},
+      {"name": "The Announce-Then-Read Rule", "body": "Condensada mayúscula para titulares y etiquetas; Barlow para lo que se lee de corrido.", "section": "typography"},
+      {"name": "The Slab-Once Rule", "body": "Zilla Slab solo existe en el sello SAINT TECHNOLOGY.", "section": "typography"},
+      {"name": "The Flat-Enamel Rule", "body": "Ninguna superficie lleva sombra difusa; la viñeta usa un anillo de 3px sin desenfoque.", "section": "elevation"}
+    ],
+    "dos": ["Do mantener las superficies planas con bordes de porcelana de 2px.", "Do asignar el color de línea por tema.", "Do escribir CSS base para celular y subir con min-width.", "Do marcar lo inexistente como tal.", "Do publicar servicios sin precio y solo testimonios reales.", "Do usar personajes originales para escenas de negocio, y retrato y capturas reales para lo verdadero.", "Do respetar prefers-reduced-motion."],
+    "donts": ["Don't usar glow, glass, texto en degradado ni sombras difusas.", "Don't repetir el diagrama de mapa fuera de la entrada.", "Don't usar el hero de IA genérico ni un tono infantil.", "Don't inventar testimonios, empresas o proyectos privados, ni mostrar precios.", "Don't prometer un correo cuando el formulario no está conectado.", "Don't usar Zilla Slab fuera del sello SAINT TECHNOLOGY."]
+  }
+}
