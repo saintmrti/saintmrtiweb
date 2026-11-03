@@ -26,7 +26,7 @@ const { app } = Astro.props;
   </div>
   <div class="app-vis">
     {app.imagen && <Image src={app.imagen} alt={`${app.nombre} en escritorio: panel con ingresos, gastos y balance del periodo, y recordatorios de pagos.`} widths={[640, 960, 1280]} sizes="(min-width: 900px) 560px, 100vw" class="desk" />}
-    {app.imagenMovil && <Image src={app.imagenMovil} alt={`${app.nombre} en celular: periodo activo, botón de nueva transacción y resumen de ingresos, gastos y balance.`} widths={[240, 360, 480]} sizes="(min-width: 900px) 220px, 55vw" class="mov" />}
+    {app.imagenMovil && <Image src={app.imagenMovil} alt={`${app.nombre} en celular: periodo activo, botón de nueva transacción y resumen de ingresos, gastos y balance.`} widths={[240, 360, 480]} sizes="(min-width: 900px) 260px, 55vw" class="mov" />}
     <p class="pie">Vista de ejemplo con datos ficticios.</p>
   </div>
 </article>
@@ -48,7 +48,7 @@ const { app } = Astro.props;
   @media (min-width: 640px) { .acciones { display: flex; flex-wrap: wrap; align-items: center; } }
   @media (min-width: 900px) {
     .app { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 56px; align-items: center; }
-    .app-vis { grid-template-columns: 1fr 220px; align-items: end; justify-items: stretch; gap: 16px 20px; }
+    .app-vis { grid-template-columns: 1fr 260px; align-items: end; justify-items: stretch; gap: 16px 20px; }
     .desk { display: block; width: 100%; height: auto; border-radius: 14px; border: 2px solid rgba(244, 240, 255, 0.85); }
     .mov { width: 100%; }
     .pie { grid-column: 1 / -1; }

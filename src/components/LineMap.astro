@@ -13,9 +13,9 @@ const planeada = clase.estado === 'proximamente';
 const estadoClase = planeada ? 'Próximamente' : 'Disponible';
 ---
 <div class="mapa">
-  <svg class="map" viewBox="0 0 700 780" role="img" aria-labelledby="mapa-t mapa-d">
+  <svg class="map" viewBox="0 0 700 780" role="group" aria-labelledby="mapa-t mapa-d">
     <title id="mapa-t">Diagrama de líneas de saintmrti</title>
-    <desc id="mapa-d">La línea Aprender va de la Clase 1 a las clases personalizadas. Ahí hay un transbordo a la línea Construir, con los servicios de Saint Technology, y a la línea Apps.</desc>
+    <desc id="mapa-d">La línea Aprender va de la Clase 1 a las clases personalizadas. Ahí hay un transbordo a la línea Construir, con los servicios de Saint Technology, y a la línea Apps. Toca o presiona Enter sobre una línea para resaltarla.</desc>
 
     <g class="calles" fill="none" stroke="rgba(244,240,255,.05)" stroke-width="2">
       <path d="M0 230H700M0 520H700M80 0V780M540 0V780" />
@@ -23,10 +23,10 @@ const estadoClase = planeada ? 'Próximamente' : 'Disponible';
     </g>
 
     <g class="casing" fill="none" stroke="#0b0a29" stroke-width="28" stroke-linejoin="round" stroke-linecap="round">
-      <path d="M150 80V230L330 410" /><path d="M330 410L400 480V700" /><path d="M330 410L250 490V600" />
+      <path d="M150 80V230L330 410" /><path d="M330 410L400 480V700" /><path d="M330 410L270 470V600" />
     </g>
 
-    <g class="ln ln-m">
+    <g class="ln ln-m" data-linea="m" tabindex="0" role="button" aria-pressed="false" aria-label="Resaltar la línea Aprender">
       {planeada ? (
         <>
           <path class="plan" d="M150 80V230L290 370" fill="none" stroke="#ff2fdc" stroke-width="16" stroke-linejoin="round" stroke-dasharray="22 14" />
@@ -39,34 +39,34 @@ const estadoClase = planeada ? 'Próximamente' : 'Disponible';
       <circle class="pulse" cx="150" cy="80" r="11" fill="none" stroke="#ff2fdc" stroke-width="3" />
       <circle cx="150" cy="200" r="11" fill="#0b0a29" stroke="#ff2fdc" stroke-width="5" />
       <g class="tag-aqui">
-        <rect x="80" y="14" width="140" height="30" rx="6" fill="#f4f0ff" /><path d="M142 44H158L150 56Z" fill="#f4f0ff" />
-        <text class="tagt" x="150" y="35" text-anchor="middle" fill="#0b0a29">ESTÁS AQUÍ</text>
+        <rect x="64" y="12" width="172" height="34" rx="6" fill="#f4f0ff" /><path d="M142 46H158L150 58Z" fill="#f4f0ff" />
+        <text class="tagt" x="150" y="37" text-anchor="middle" fill="#0b0a29">ESTÁS AQUÍ</text>
       </g>
       <g class="tag-listo">
-        <rect x="12" y="14" width="276" height="30" rx="6" fill="#f4f0ff" /><path d="M142 44H158L150 56Z" fill="#f4f0ff" />
-        <text class="tagt" x="150" y="35" text-anchor="middle" fill="#0b0a29">YA ESTÁS EN LA LISTA</text>
+        <rect x="0" y="12" width="300" height="34" rx="6" fill="#f4f0ff" /><path d="M142 46H158L150 58Z" fill="#f4f0ff" />
+        <text class="tagt" x="150" y="37" text-anchor="middle" fill="#0b0a29">YA ESTÁS EN LA LISTA</text>
       </g>
-      <rect x="14" y="120" width="116" height="28" rx="6" fill="#ff2fdc" /><text class="tagt" x="72" y="140" text-anchor="middle" fill="#0b0a29">APRENDER</text>
-      <text class="l1" x="184" y="86">Clase 1: {clase.tituloCorto}</text><text class="l2" x="184" y="110">{estadoClase} · {clase.duracion}</text>
-      <text class="l1" x="184" y="206">Más clases</text><text class="l2" x="184" y="230">En preparación</text>
+      <rect x="8" y="116" width="126" height="34" rx="6" fill="#ff2fdc" /><text class="tagt" x="71" y="141" text-anchor="middle" fill="#0b0a29">APRENDER</text>
+      <text class="l1" x="184" y="90">Clase 1: {clase.tituloCorto}</text><text class="l2" x="184" y="120">{estadoClase} · {clase.duracion}</text>
+      <text class="l1" x="184" y="210">Más clases</text><text class="l2" x="184" y="240">En preparación</text>
     </g>
 
-    <g class="ln ln-b">
+    <g class="ln ln-b" data-linea="b" tabindex="0" role="button" aria-pressed="false" aria-label="Resaltar la línea Construir">
       <path d="M330 410L400 480V700" fill="none" stroke="#4a5bff" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" />
       {[540, 620, 700].map((y) => <circle cx="400" cy={y} r="11" fill="#f4f0ff" stroke="#0b0a29" stroke-width="4" />)}
-      {s1 && <><text class="l1" x="432" y="546">{s1.tituloCorto}</text><text class="l2" x="432" y="570">{s1.etiqueta}</text></>}
-      {s2 && <><text class="l1" x="432" y="626">{s2.tituloCorto}</text><text class="l2" x="432" y="650">{s2.etiqueta}</text></>}
-      {s3 && <><text class="l1" x="432" y="706">{s3.tituloCorto}</text><text class="l2" x="432" y="730">{s3.etiqueta}</text></>}
-      <rect x="340" y="748" width="136" height="28" rx="6" fill="#4a5bff" /><text class="tagt" x="408" y="768" text-anchor="middle" fill="#ffffff">CONSTRUIR</text>
+      {s1 && <><text class="l1" x="432" y="548">{s1.tituloCorto}</text><text class="l2" x="432" y="576">{s1.etiqueta}</text></>}
+      {s2 && <><text class="l1" x="432" y="628">{s2.tituloCorto}</text><text class="l2" x="432" y="656">{s2.etiqueta}</text></>}
+      {s3 && <><text class="l1" x="432" y="708">{s3.tituloCorto}</text><text class="l2" x="432" y="736">{s3.etiqueta}</text></>}
+      <rect x="334" y="746" width="152" height="32" rx="6" fill="#4a5bff" /><text class="tagt" x="410" y="769" text-anchor="middle" fill="#ffffff">CONSTRUIR</text>
     </g>
 
     {app && (
-      <g class="ln ln-a">
-        <path d="M330 410L250 490V600" fill="none" stroke="#ffc967" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" />
-        <circle cx="250" cy="600" r="11" fill="#f4f0ff" stroke="#0b0a29" stroke-width="4" />
-        <text class="l1" x="218" y="594" text-anchor="end">{app.nombre}</text>
-        {app.version && <text class="l2" x="218" y="618" text-anchor="end">{app.version}</text>}
-        <rect x="214" y="636" width="72" height="28" rx="6" fill="#ffc967" /><text class="tagt" x="250" y="656" text-anchor="middle" fill="#0b0a29">APPS</text>
+      <g class="ln ln-a" data-linea="a" tabindex="0" role="button" aria-pressed="false" aria-label="Resaltar la línea Apps">
+        <path d="M330 410L270 470V600" fill="none" stroke="#ffc967" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" />
+        <circle cx="270" cy="600" r="11" fill="#f4f0ff" stroke="#0b0a29" stroke-width="4" />
+        <text class="l1" x="240" y="598" text-anchor="end">{app.nombre}</text>
+        {app.version && <text class="l2" x="240" y="626" text-anchor="end">{app.version}</text>}
+        <rect x="226" y="640" width="88" height="34" rx="6" fill="#ffc967" /><text class="tagt" x="270" y="665" text-anchor="middle" fill="#0b0a29">APPS</text>
       </g>
     )}
 
@@ -74,22 +74,27 @@ const estadoClase = planeada ? 'Próximamente' : 'Disponible';
       <circle cx="330" cy="410" r="36" fill="#f4f0ff" stroke="#0b0a29" stroke-width="5" />
       <circle cx="330" cy="410" r="29" fill="#100d28" />
       <image href={infinito.src} x="303" y="383" width="54" height="54" />
-      <text class="l1" x="284" y="404" text-anchor="end">Personalizadas</text>
-      <text class="l2" x="284" y="428" text-anchor="end">Clases 1 a 1 · disponible</text>
+      <text class="l1" x="284" y="402" text-anchor="end">Personalizadas</text>
+      <text class="l2" x="284" y="432" text-anchor="end">1 a 1 · disponible</text>
     </g>
   </svg>
   <p class="leyenda"><span class="dash" aria-hidden="true"></span>Línea punteada: en preparación</p>
 </div>
 
 <style>
+  /* Mobile first: con el mapa a ~358 px de ancho, estos tamaños dan ≥13 px reales. */
   .map { display: block; width: 100%; height: auto; }
-  .l1 { font: 600 31px var(--font-barlow); fill: #f4f0ff; }
-  .l2 { font: 500 22px var(--font-barlow); fill: #b9a6ee; }
-  .tagt { font: 700 21px var(--font-barlow-condensed); letter-spacing: 0.08em; }
+  .l1 { font: 600 34px var(--font-barlow); fill: #f4f0ff; }
+  .l2 { font: 500 26px var(--font-barlow); fill: #b9a6ee; }
+  .tagt { font: 700 26px var(--font-barlow-condensed); letter-spacing: 0.08em; }
   .plan { animation: march 1.8s linear infinite; }
   .pulse { transform-box: fill-box; transform-origin: center; animation: pulse 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
-  .ln { transition: opacity 0.25s; }
+  .ln { transition: opacity 0.25s; cursor: pointer; outline: none; }
+  .ln:focus-visible { outline: 2px solid #ffc967; outline-offset: 6px; }
   .mapa:has(.ln:hover) .ln:not(:hover) { opacity: 0.3; }
+  .mapa[data-sel="m"] .ln:not(.ln-m),
+  .mapa[data-sel="b"] .ln:not(.ln-b),
+  .mapa[data-sel="a"] .ln:not(.ln-a) { opacity: 0.3; }
   .tag-listo { display: none; }
   :global([data-en-lista]) .tag-aqui { display: none; }
   :global([data-en-lista]) .tag-listo { display: inline; }
@@ -99,6 +104,30 @@ const estadoClase = planeada ? 'Próximamente' : 'Disponible';
   .dash { width: 34px; height: 0; border-top: 5px dashed var(--color-aprender); }
   @keyframes march { to { stroke-dashoffset: -36; } }
   @keyframes pulse { 0% { transform: scale(1); opacity: 0.9; } 100% { transform: scale(2.9); opacity: 0; } }
-  @media (min-width: 900px) { .l1 { font-size: 24px; } .l2 { font-size: 17px; } .tagt { font-size: 16px; } .map { max-height: calc(100vh - 140px); } }
+  @media (min-width: 900px) {
+    .l1 { font-size: 28px; }
+    .l2 { font-size: 20px; }
+    .tagt { font-size: 20px; }
+    .map { max-height: calc(100vh - 140px); }
+  }
   @media (prefers-reduced-motion: reduce) { .plan, .pulse { animation: none; } }
 </style>
+
+<script>
+  // Tocar (o Enter / Espacio) sobre una línea la resalta y atenúa las demás; funciona en celular y con teclado.
+  document.querySelectorAll<HTMLElement>('.mapa').forEach((mapa) => {
+    const alternar = (ln: SVGGElement) => {
+      const id = ln.dataset.linea!;
+      const activa = mapa.dataset.sel === id;
+      if (activa) delete mapa.dataset.sel;
+      else mapa.dataset.sel = id;
+      mapa.querySelectorAll<SVGGElement>('.ln').forEach((o) => o.setAttribute('aria-pressed', String(mapa.dataset.sel === o.dataset.linea)));
+    };
+    mapa.querySelectorAll<SVGGElement>('.ln').forEach((ln) => {
+      ln.addEventListener('click', () => alternar(ln));
+      ln.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); alternar(ln); }
+      });
+    });
+  });
+</script>

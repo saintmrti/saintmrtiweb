@@ -17,8 +17,7 @@ const tipos = ['landing', 'app', 'auto'] as const;
           : <Ilustracion tipo={tipos[i] ?? 'landing'} />}
       </div>
       <div class="plan-txt">
-        <span class="tag tag-b">{s.data.etiqueta}</span>
-        <h3 class="h3 plan-t">{s.data.titulo}</h3>
+        <div class="plan-cab"><h3 class="h3 plan-t">{s.data.titulo}</h3><span class="tag tag-b">{s.data.etiqueta}</span></div>
         <p class="plan-d">{s.data.descripcion}</p>
         <ul class="incluye">{s.data.incluye.map((x) => <li>{x}</li>)}</ul>
         <p class="entrega"><b>Entrega:</b> {s.data.entrega}</p>
@@ -33,7 +32,8 @@ const tipos = ['landing', 'app', 'auto'] as const;
   .plan { display: grid; gap: 20px; padding-block: 36px; border-top: 1px solid rgba(244, 240, 255, 0.14); }
   .plan:last-child { border-bottom: 1px solid rgba(244, 240, 255, 0.14); }
   .plan-vis :global(img), .plan-vis :global(svg) { display: block; width: 100%; height: auto; border-radius: 18px; }
-  .plan-t { margin-top: 14px; font-size: 40px; }
+  .plan-cab { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+  .plan-t { font-size: 40px; }
   .plan-d { margin-top: 12px; color: var(--color-ink-2); }
   .incluye { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 9px; }
   .incluye li { position: relative; padding-left: 26px; }
@@ -42,7 +42,6 @@ const tipos = ['landing', 'app', 'auto'] as const;
   .plan-cta { width: 100%; }
   @media (min-width: 900px) {
     .plan { grid-template-columns: 380px minmax(0, 1fr) 240px; gap: 44px; align-items: start; }
-    .plan-t { margin-top: 0; }
     .plan-txt { padding-top: 2px; }
   }
 </style>

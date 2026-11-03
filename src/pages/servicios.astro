@@ -13,12 +13,13 @@ const preguntas = faq.filter((f) => /servicios|proyecto|datos/i.test(f.q));
 ---
 <Layout title="Servicios de Saint Technology · saintmrti" description="Landing web, app web escalable y automatización con IA para PyMEs mexicanas, profesionales independientes y startups. Cotiza por WhatsApp.">
   <section class="wrap seccion" style="--linea: var(--color-construir)">
+    <h1 class="h2">Desarrollo de productos web y automatización con IA</h1>
+    <p class="lead">Para PyMEs mexicanas, profesionales independientes y startups. Cada proyecto se cotiza según lo que necesitas: escríbeme por WhatsApp y te respondo con una propuesta.</p>
     <div class="lockup">
       <Image src={infinito} alt="" width={64} height={64} class="lockup-mark" />
       <div><span class="slab">SAINT</span><span class="tech">TECHNOLOGY</span></div>
     </div>
-    <h1 class="h2">Desarrollo de productos web y automatización con IA</h1>
-    <p class="lead">Para PyMEs mexicanas, profesionales independientes y startups. Cada proyecto se cotiza según lo que necesitas: escríbeme por WhatsApp y te respondo con una propuesta.</p>
+
     <Planes servicios={servicios} />
     <p class="proceso">Cada plan incluye 3 videollamadas (para definir lo que necesitas, revisar avances a mitad del camino y presentar el resultado final) y atención personalizada por WhatsApp.</p>
     <p class="cta"><a class="btn btn-b" href={whatsappUrl('Hola Saint, quiero cotizar un proyecto con Saint Technology.')} target="_blank" rel="noopener noreferrer">Cotiza por WhatsApp</a></p>
@@ -34,7 +35,7 @@ const preguntas = faq.filter((f) => /servicios|proyecto|datos/i.test(f.q));
 </Layout>
 
 <style>
-  .lockup { display: flex; align-items: center; gap: 16px; margin-bottom: 36px; }
+  .lockup { display: flex; align-items: center; gap: 16px; margin-top: 32px; }
   .lockup :global(.lockup-mark) { width: 64px; height: 64px; }
   .slab { display: block; font: 700 34px/1 var(--font-zilla-slab); letter-spacing: 0.14em; }
   .tech { display: block; margin-top: 6px; font: 500 14px var(--font-barlow); letter-spacing: 0.42em; color: var(--color-lilac); }

@@ -97,12 +97,13 @@ const estadoClase = clase.estado === 'proximamente' ? 'Próximamente' : 'Disponi
 
   <section id="servicios" class="seccion banda" style="--linea: var(--color-construir)">
     <div class="wrap">
+      <h2 class="h2">Desarrollo de productos web y automatización con IA</h2>
+      <p class="lead">Para PyMEs mexicanas, profesionales independientes y startups. Cada proyecto se cotiza según lo que necesitas.</p>
       <div class="lockup">
         <Image src={infinito} alt="" width={64} height={64} class="lockup-mark" />
         <div><span class="slab">SAINT</span><span class="tech">TECHNOLOGY</span></div>
       </div>
-      <h2 class="h2">Desarrollo de productos web y automatización con IA</h2>
-      <p class="lead">Para PyMEs mexicanas, profesionales independientes y startups. Cada proyecto se cotiza según lo que necesitas.</p>
+
       <Planes servicios={servicios} />
       <p class="proceso">Cada plan incluye 3 videollamadas (para definir lo que necesitas, revisar avances a mitad del camino y presentar el resultado final) y atención personalizada por WhatsApp.</p>
     </div>
@@ -163,7 +164,7 @@ const estadoClase = clase.estado === 'proximamente' ? 'Próximamente' : 'Disponi
 
 <style>
   /* Mobile first: base para celular, min-width hacia arriba. */
-  .hero-bg { background: radial-gradient(60% 50% at 78% 38%, rgba(74, 91, 255, 0.16), transparent 70%), radial-gradient(50% 45% at 12% 0%, rgba(255, 47, 220, 0.1), transparent 70%); border-bottom: 1px solid rgba(244, 240, 255, 0.1); }
+  .hero-bg { background: var(--color-ground); border-bottom: 1px solid rgba(244, 240, 255, 0.1); }
   .hero { display: grid; gap: 40px; padding-block: 28px 48px; }
   h1 { font: 700 clamp(56px, 16vw, 76px) / 0.92 var(--font-barlow-condensed); text-transform: uppercase; letter-spacing: -0.005em; }
   h1 .m { color: var(--color-aprender); }
@@ -194,7 +195,7 @@ const estadoClase = clase.estado === 'proximamente' ? 'Próximamente' : 'Disponi
   .cta-clase { margin-top: 32px; }
   .cta-clase .btn { width: 100%; }
 
-  .lockup { display: flex; align-items: center; gap: 16px; margin-bottom: 36px; }
+  .lockup { display: flex; align-items: center; gap: 16px; margin-top: 32px; }
   .lockup :global(.lockup-mark) { width: 64px; height: 64px; }
   .slab { display: block; font: 700 34px/1 var(--font-zilla-slab); letter-spacing: 0.14em; }
   .tech { display: block; margin-top: 6px; font: 500 14px var(--font-barlow); letter-spacing: 0.42em; color: var(--color-lilac); }

@@ -5,7 +5,7 @@ estado: disponible
 version: Versión 1
 nota: Sigue mejorando con la opinión de quienes la usan.
 url: https://moneymanager.saintmrti.com
-imagen: ../../assets/apps/money-manager-escritorio.png
+imagen: ../../assets/apps/money-manager-escritorio-recorte.png
 imagenMovil: ../../assets/apps/money-manager-movil.png
 funciones:
   - "Periodos a tu medida: una semana, una catorcena o un mes"

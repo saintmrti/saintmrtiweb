@@ -24,7 +24,7 @@
     background: var(--color-ground);
     color-scheme: dark;
     scroll-behavior: smooth;
-    scroll-padding-top: 92px;
+    scroll-padding-top: 132px;
     scrollbar-color: #3b3680 var(--color-ground);
   }
   body {
@@ -39,6 +39,7 @@
   ::selection { background: var(--color-aprender); color: var(--color-ground); }
   :focus-visible { outline: 2px solid var(--color-apps); outline-offset: 3px; border-radius: 6px; }
   a { color: inherit; }
+  @media (min-width: 900px) { html { scroll-padding-top: 92px; } }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { transition: none !important; }

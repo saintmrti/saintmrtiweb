@@ -22,11 +22,14 @@ const links = [
     </nav>
     <a class="navbtn" href="/#lista">Lista de espera</a>
   </div>
+  <nav class="tira" aria-label="Secciones">
+    {links.map((l) => <a href={l.href}>{l.texto}</a>)}
+  </nav>
 </header>
 
 <style>
   .nav { position: sticky; top: 0; z-index: 50; background: var(--color-ground); border-bottom: 1px solid rgba(244, 240, 255, 0.14); }
-  .nav-in { max-width: 1440px; margin: 0 auto; height: 76px; padding-inline: clamp(16px, 4vw, 56px); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .nav-in { max-width: 1440px; margin: 0 auto; height: 68px; padding-inline: clamp(16px, 4vw, 56px); display: flex; align-items: center; justify-content: space-between; gap: 24px; }
   .brand { display: flex; align-items: center; gap: 10px; font: 600 20px var(--font-barlow); letter-spacing: 0.01em; text-decoration: none; }
   .brand :global(.mark) { width: 34px; height: 34px; }
   .links { display: none; gap: 28px; font: 500 16px var(--font-barlow); }
@@ -34,5 +37,14 @@ const links = [
   .links a:hover { color: #fff; border-color: var(--color-aprender); }
   .navbtn { font: 600 15px var(--font-barlow); text-decoration: none; padding: 9px 16px; border: 2px solid rgba(244, 240, 255, 0.85); border-radius: 8px; transition: background 0.2s; white-space: nowrap; }
   .navbtn:hover { background: rgba(244, 240, 255, 0.1); }
-  @media (min-width: 900px) { .links { display: flex; } }
+  /* Celular: tira de secciones debajo de la barra, con desplazamiento horizontal. */
+  .tira { display: flex; gap: 8px; overflow-x: auto; padding: 0 16px 10px; scrollbar-width: none; }
+  .tira::-webkit-scrollbar { display: none; }
+  .tira a { flex: none; padding: 7px 14px; border: 1.5px solid rgba(244, 240, 255, 0.28); border-radius: 999px; font: 500 15px var(--font-barlow); color: var(--color-ink-2); text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+  .tira a:hover { color: #fff; border-color: var(--color-aprender); }
+  @media (min-width: 900px) {
+    .nav-in { height: 76px; }
+    .links { display: flex; }
+    .tira { display: none; }
+  }
 </style>
