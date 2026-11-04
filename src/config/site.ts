@@ -15,8 +15,7 @@ export const site = {
     x: 'https://x.com/saintmrti',
     linkedin: 'https://www.linkedin.com/in/saintmartin',
     github: 'https://github.com/saintmrti',
-    // TODO(Saint): usuario de TikTok. Mientras esté vacío, no se muestra.
-    tiktok: '',
+    tiktok: 'https://www.tiktok.com/@saintmrti',
   },
   moneyManager: 'https://moneymanager.saintmrti.com',
   formularios: {
