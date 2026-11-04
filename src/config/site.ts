@@ -23,11 +23,15 @@ export const site = {
     // Google Form actual de clases personalizadas de IA (se conserva en /registro).
     registro:
       'https://docs.google.com/forms/d/e/1FAIpQLSfLllgBoCyVUIVqgEc3-Vx1enRWAGeypMDBCav6FCeWLAuNIw/viewform',
-    // TODO(Saint): Google Form NUEVO de lista de espera. Pásame el enlace prellenado para sacar los entry.XXXX.
+    // Google Form de la lista de espera de la Clase 1. Solo tiene dos preguntas obligatorias
+    // (Nombre y Correo). Si se agrega otra obligatoria, Google rechaza el envío sin avisar.
     listaEspera: {
-      verForm: '',
-      formResponse: '',
-      entradas: { nombre: '', correo: '', whatsapp: '', aprender: '' },
+      verForm:
+        'https://docs.google.com/forms/d/e/1FAIpQLSdUDVXV_yu62avUz6lHwg7_chELYW5LEJyLvY2bzHSQMKAA7A/viewform',
+      formResponse:
+        'https://docs.google.com/forms/d/e/1FAIpQLSdUDVXV_yu62avUz6lHwg7_chELYW5LEJyLvY2bzHSQMKAA7A/formResponse',
+      // whatsapp y aprender no existen en el formulario; la página solo envía nombre y correo.
+      entradas: { nombre: 'entry.1669067578', correo: 'entry.1686189979', whatsapp: '', aprender: '' },
     },
   },
 } as const;
