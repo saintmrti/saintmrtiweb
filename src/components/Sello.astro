@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import infinito from '../assets/brand/infinito.png';
+---
+<div class="sello">
+  <Image src={infinito} alt="" width={64} height={64} class="marca" />
+  <div><span class="slab">SAINT</span><span class="tech">TECHNOLOGY</span></div>
+</div>
+
+<style>
+  /* El sello es el mismo en todas las páginas. Mismo diseño: en celular se ve más chico, desde 900px a su tamaño completo. */
+  .sello { display: flex; align-items: center; gap: 12px; }
+  .sello :global(.marca) { width: 3rem; height: 3rem; }
+  .slab { display: block; font: 700 var(--fs-wordmark)/1 var(--font-zilla-slab); letter-spacing: 0.14em; }
+  .tech { display: block; margin-top: 4px; font: 500 var(--fs-wordmark-sub) var(--font-barlow); letter-spacing: 0.42em; color: var(--color-lilac); }
+  @media (min-width: 900px) {
+    .sello { gap: 16px; }
+    .sello :global(.marca) { width: 4rem; height: 4rem; }
+    .tech { margin-top: 6px; }
+  }
+</style>

@@ -4,6 +4,7 @@ import infinito from '../assets/brand/infinito.png';
 import Redes from './Redes.astro';
 import { site, whatsappUrl } from '../config/site';
 const año = new Date().getFullYear();
+const dominioPortafolio = new URL(site.portafolio).host;
 ---
 <footer class="pie">
   <div class="wrap pie-grid">
@@ -12,35 +13,32 @@ const año = new Date().getFullYear();
       <p class="linea">{site.linea}</p>
     </div>
     <div>
-      <h2 class="titulo">Contacto</h2>
+      <h2 class="h4 titulo">Contacto</h2>
       <ul class="lista">
-        <li><a href={whatsappUrl('Hola Saint, vi tu sitio y quiero platicar.')} target="_blank" rel="noopener noreferrer">WhatsApp {site.whatsappVisible}</a></li>
+        <li><a href={whatsappUrl('Hola Saint, vi tu sitio y quiero platicar.')} target="_blank" rel="noopener noreferrer" aria-label={`WhatsApp ${site.whatsappVisible}`} title="Escríbeme por WhatsApp">{site.whatsappVisible}</a></li>
         <li><a href={`mailto:${site.correo}`}>{site.correo}</a></li>
-        <li><a href={site.portafolio} target="_blank" rel="noopener noreferrer">Portafolio</a></li>
+        <li><a href={site.portafolio} target="_blank" rel="noopener noreferrer" aria-label={`Portafolio: ${dominioPortafolio}`} title="Mi portafolio">{dominioPortafolio}</a></li>
       </ul>
     </div>
     <div>
-      <h2 class="titulo">Redes</h2>
+      <h2 class="h4 titulo">Redes</h2>
       <Redes />
     </div>
   </div>
-  <div class="wrap legal">
-    <p>© {año} {site.nombre}. Saint Technology es el nombre de mis servicios de desarrollo.</p>
-    <a href="/privacidad">Aviso de privacidad</a>
-  </div>
+  <p class="wrap legal">© {año} Saint Technology</p>
 </footer>
 
 <style>
   .pie { border-top: 1px solid rgba(244, 240, 255, 0.14); padding-top: 56px; background: var(--color-ground); }
   .pie-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
-  .brand { display: inline-flex; align-items: center; gap: 12px; font: 600 22px var(--font-barlow); text-decoration: none; }
+  .brand { display: inline-flex; align-items: center; gap: 12px; font: 600 var(--fs-lead) var(--font-barlow); letter-spacing: 0.01em; text-decoration: none; }
   .brand :global(.mark) { width: 40px; height: 40px; }
   .linea { margin-top: 12px; color: var(--color-ink-2); max-width: 28ch; }
-  .titulo { font: 700 22px/1 var(--font-barlow-condensed); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 14px; }
+  .titulo { margin-bottom: 14px; }
   .lista { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
   .lista a { text-decoration: underline; text-decoration-color: rgba(244, 240, 255, 0.35); text-underline-offset: 5px; transition: text-decoration-color 0.2s; }
   .lista a:hover { text-decoration-color: var(--color-aprender); }
-  .legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; margin-top: 48px; padding-block: 24px 32px; border-top: 1px solid rgba(244, 240, 255, 0.1); color: var(--color-ink-2); font-size: 15px; }
-  .legal a { text-decoration: underline; text-underline-offset: 4px; }
+  /* Una sola línea legal centrada, sin filete que la separe del resto del pie. */
+  .legal { margin-top: 40px; padding-bottom: max(12px, env(safe-area-inset-bottom, 0px)); text-align: center; color: var(--color-ink-2); font-size: var(--fs-small); }
   @media (min-width: 800px) { .pie-grid { grid-template-columns: 1.3fr 1fr 1fr; gap: 40px; } }
 </style>

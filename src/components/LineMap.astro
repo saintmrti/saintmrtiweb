@@ -62,11 +62,11 @@ const estadoClase = planeada ? 'Próximamente' : 'Disponible';
 
     {app && (
       <g class="ln ln-a" data-linea="a" tabindex="0" role="button" aria-pressed="false" aria-label="Resaltar la línea Apps">
-        <path d="M330 410L270 470V600" fill="none" stroke="#ffc967" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" />
+        <path d="M330 410L270 470V600" fill="none" stroke="#00ffff" stroke-width="16" stroke-linejoin="round" stroke-linecap="round" />
         <circle cx="270" cy="600" r="11" fill="#f4f0ff" stroke="#0b0a29" stroke-width="4" />
         <text class="l1" x="240" y="598" text-anchor="end">{app.nombre}</text>
         {app.version && <text class="l2" x="240" y="626" text-anchor="end">{app.version}</text>}
-        <rect x="226" y="640" width="88" height="34" rx="6" fill="#ffc967" /><text class="tagt" x="270" y="665" text-anchor="middle" fill="#0b0a29">APPS</text>
+        <rect x="226" y="640" width="88" height="34" rx="6" fill="#00ffff" /><text class="tagt" x="270" y="665" text-anchor="middle" fill="#0b0a29">APPS</text>
       </g>
     )}
 
@@ -90,7 +90,7 @@ const estadoClase = planeada ? 'Próximamente' : 'Disponible';
   .plan { animation: march 1.8s linear infinite; }
   .pulse { transform-box: fill-box; transform-origin: center; animation: pulse 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
   .ln { transition: opacity 0.25s; cursor: pointer; outline: none; }
-  .ln:focus-visible { outline: 2px solid #ffc967; outline-offset: 6px; }
+  .ln:focus-visible { outline: 2px solid #00ffff; outline-offset: 6px; }
   .mapa:has(.ln:hover) .ln:not(:hover) { opacity: 0.3; }
   .mapa[data-sel="m"] .ln:not(.ln-m),
   .mapa[data-sel="b"] .ln:not(.ln-b),
@@ -100,7 +100,7 @@ const estadoClase = planeada ? 'Próximamente' : 'Disponible';
   :global([data-en-lista]) .tag-listo { display: inline; }
   :global([data-en-lista]) .pulse { animation: none; opacity: 0; }
   :global([data-en-lista]) .st-clase { fill: #f4f0ff; }
-  .leyenda { display: flex; align-items: center; gap: 10px; margin-top: 6px; font: 500 15px var(--font-barlow); color: var(--color-ink-2); }
+  .leyenda { display: flex; align-items: center; gap: 10px; margin-top: 6px; font: 400 var(--fs-small)/1.5 var(--font-barlow); color: var(--color-ink-2); }
   .dash { width: 34px; height: 0; border-top: 5px dashed var(--color-aprender); }
   @keyframes march { to { stroke-dashoffset: -36; } }
   @keyframes pulse { 0% { transform: scale(1); opacity: 0.9; } 100% { transform: scale(2.9); opacity: 0; } }

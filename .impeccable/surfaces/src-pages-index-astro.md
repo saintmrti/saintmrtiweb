@@ -7,7 +7,7 @@ related_targets: []
 
 # Superficie: / (página principal de saintmrti.com)
 
-Modo: Persuade. El mapa de Línea ∞ manda solo en la entrada (primer pantallazo); el resto son secciones normales con los mismos colores y tipografía. El respaldo de Saint (foto, más de 4 años, 3 grandes compañías) vive en "Sobre mí", no en la entrada.
+Modo: Persuade. El mapa de Línea ∞ manda solo en la entrada (primer pantallazo); el resto son secciones normales con los mismos colores y tipografía. El respaldo de Saint (foto y más de cuatro años de experiencia; el texto es el de su portafolio) vive en "Sobre mí", no en la entrada.
 
 Audiencia y acción: quien llega desde TikTok o Instagram y no conoce a Saint, casi siempre desde el celular; después, PyMEs que quieren cotizar. Acción principal: apuntarse a la lista de espera de la Clase 1. Secundaria: cotizar por WhatsApp.
 
@@ -19,7 +19,7 @@ Decisiones abiertas: Google Form nuevo de la lista de espera, fecha del precio d
 
 THESIS: La oferta de Saint es un recorrido de aprender a construir y el infinito de su marca es el transbordo. La entrada es ese mapa, con un solo formulario a la vista, y rechaza el hero de IA de siempre: brillo sobre negro, titular centrado y fila de tarjetas.
 
-OWN-WORLD: Esmalte azul medianoche #0b0a29; líneas a 45° y 90° (magenta Aprender #ff2fdc, azul Construir #4a5bff, ámbar Apps #ffc967); estaciones de porcelana #f4f0ff; punteado = en preparación; el infinito como transbordo. Titulares condensados en mayúsculas, etiquetas humanistas, señalética con borde de porcelana. Sin glow, glass ni texto en degradado.
+OWN-WORLD: Esmalte azul medianoche #0b0a29; líneas a 45° y 90° (magenta Aprender #ff2fdc, azul Construir #4a5bff, cian Apps #00ffff); estaciones de porcelana #f4f0ff; punteado = en preparación; el infinito como transbordo. Titulares condensados en mayúsculas, etiquetas humanistas, señalética con borde de porcelana. Sin glow, glass ni texto en degradado.
 
 STORY: En segundos el visitante entiende que viene una clase de IA sin tecnicismos y ve el camino completo, con lo que aún no existe marcado como tal. Cree por la honestidad del mapa y se apunta a la lista; quien viene a cotizar encuentra su línea y el WhatsApp.
 

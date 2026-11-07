@@ -8,7 +8,7 @@ import Ilustracion from '../components/Ilustracion.astro';
 import Planes from '../components/Planes.astro';
 import AppFicha from '../components/AppFicha.astro';
 import Faq from '../components/Faq.astro';
-import infinito from '../assets/brand/infinito.png';
+import Sello from '../components/Sello.astro';
 import saint from '../assets/brand/saint-portafolio.jpg';
 import banner from '../assets/imagenes/banner-cierre-guia.png';
 import { site, whatsappUrl, listaEsperaConfigurada } from '../config/site';
@@ -40,13 +40,13 @@ const conFormulario = listaEsperaConfigurada || import.meta.env.DEV;
   <div class="hero-bg">
     <section class="wrap hero" aria-labelledby="hero-t">
       <div class="hero-txt">
-        <h1 id="hero-t">De cero<br />a construir<br />con <span class="m">IA</span></h1>
+        <h1 id="hero-t" class="display">De cero<br />a construir<br />con <span class="m">IA</span></h1>
         <p class="sub">Empieza con una clase sin tecnicismos, con un programador que usa IA todos los días. La línea sigue hasta que quieras construir algo real.</p>
         <div class="hero-form"><ListaEspera id="lista" claseTitulo={clase.titulo} /></div>
-        <a class="alt" href={whatsappUrl('Hola Saint, quiero cotizar una web o una automatización con IA.')} target="_blank" rel="noopener noreferrer">
+        <a class="alt secundario" href={whatsappUrl('Hola Saint, quiero cotizar una web o una automatización con IA.')} target="_blank" rel="noopener noreferrer">
           <span>¿Buscas una web o automatización con IA?</span>
           <b>Cotiza por WhatsApp</b>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffc967" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00ffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
         </a>
       </div>
       <div class="hero-mapa">
@@ -79,15 +79,14 @@ const conFormulario = listaEsperaConfigurada || import.meta.env.DEV;
 
   <section id="servicios" class="seccion banda" style="--linea: var(--color-construir)">
     <div class="wrap">
-      <h2 class="h2">Desarrollo de productos web y automatización con IA</h2>
-      <p class="lead">Para PyMEs mexicanas, profesionales independientes y startups. Cada proyecto se cotiza según lo que necesitas.</p>
-      <div class="lockup">
-        <Image src={infinito} alt="" width={64} height={64} class="lockup-mark" />
-        <div><span class="slab">SAINT</span><span class="tech">TECHNOLOGY</span></div>
+      <div class="cab-sello">
+        <h2 class="h2">Desarrollo de productos web y automatización con IA</h2>
+        <p class="lead">Para PyMEs mexicanas, profesionales independientes y startups. Cada proyecto se cotiza según lo que necesitas.</p>
+        <Sello />
       </div>
 
       <Planes servicios={servicios} />
-      <p class="proceso">Cada plan incluye 3 videollamadas (para definir lo que necesitas, revisar avances a mitad del camino y presentar el resultado final) y atención personalizada por WhatsApp.</p>
+      <p class="proceso secundario">Cada plan incluye 3 videollamadas (para definir lo que necesitas, revisar avances a mitad del camino y presentar el resultado final) y atención personalizada por WhatsApp.</p>
     </div>
   </section>
 
@@ -105,9 +104,8 @@ const conFormulario = listaEsperaConfigurada || import.meta.env.DEV;
       <Image src={saint} alt="Saint-Martín Méndez" width={520} height={520} class="foto" widths={[360, 520, 800]} sizes="(min-width: 900px) 420px, 100vw" />
       <div>
         <h2 class="h2">Sobre mí</h2>
-        <p class="lead">Soy Saint-Martín Méndez, desarrollador full stack con más de 4 años de experiencia. Construyo aplicaciones web escalables con React, Next.js, TypeScript, Node.js y SQL, y uso inteligencia artificial todos los días para hacerlo mejor.</p>
-        <p class="sobre-p">He trabajado en 3 grandes compañías y en otros proyectos para empresas privadas. Por confidencialidad no puedo nombrarlas; en mi portafolio muestro parte de ese trabajo sin nombres de empresas.</p>
-        <p class="sobre-p">Aquí enseño lo que aplico: primero la clase para entender la IA y, cuando quieras construir algo, Saint Technology.</p>
+        <p class="lead">Con más de cuatro años de experiencia, me enfoco en el desarrollo de aplicaciones web escalables y de alto rendimiento utilizando tecnologías modernas como React.js, Next.js, TypeScript, Node.js y SQL. Mi objetivo es convertir ideas en experiencias digitales impactantes que perduran con el tiempo.</p>
+        <p class="sobre-p">Diseño soluciones web modernas que impulsan la innovación y el crecimiento, colaborando con PyMEs ambiciosas y grandes empresas.</p>
         <p class="sobre-acc"><a class="btn btn-line" href={site.portafolio} target="_blank" rel="noopener noreferrer">Ver mi portafolio</a></p>
       </div>
     </div>
@@ -139,14 +137,14 @@ const conFormulario = listaEsperaConfigurada || import.meta.env.DEV;
   /* Mobile first: base para celular, min-width hacia arriba. */
   .hero-bg { background: var(--color-ground); border-bottom: 1px solid rgba(244, 240, 255, 0.1); }
   .hero { display: grid; gap: 40px; padding-block: 28px 48px; }
-  h1 { font: 700 clamp(56px, 16vw, 76px) / 0.92 var(--font-barlow-condensed); text-transform: uppercase; letter-spacing: -0.005em; }
   h1 .m { color: var(--color-aprender); }
-  .sub { margin-top: 20px; font-size: 19px; color: var(--color-ink-2); max-width: 32em; }
+  .sub { margin-top: 20px; font-size: var(--fs-lead); color: var(--color-ink-2); max-width: 32em; }
   .hero-form { margin-top: 24px; max-width: 560px; }
+  /* Enlace de cotizar: su tamaño viene de .secundario (letra chica en celular, igual que "Al apuntarte aceptas…"; texto normal desde 900px). */
   .alt { display: block; margin-top: 20px; color: var(--color-ink-2); font-weight: 500; text-underline-offset: 4px; }
   .alt span { display: block; text-decoration: underline; }
-  .alt b { color: var(--color-porcelain); font-weight: 600; text-decoration: underline; }
-  .alt svg { display: inline; vertical-align: -4px; margin-left: 6px; }
+  .alt b { color: var(--color-porcelain); text-decoration: underline; }
+  .alt svg { display: inline; width: 1.15em; height: 1.15em; vertical-align: -0.2em; margin-left: 6px; }
 
   .clase-grid { display: grid; gap: 36px; }
   .estado { display: flex; align-items: center; gap: 10px; margin-top: 20px; font-weight: 600; }
@@ -159,18 +157,15 @@ const conFormulario = listaEsperaConfigurada || import.meta.env.DEV;
   .cta-clase { margin-top: 32px; }
   .cta-clase .btn { width: 100%; }
 
-  .lockup { display: flex; align-items: center; gap: 16px; margin-top: 32px; }
-  .lockup :global(.lockup-mark) { width: 64px; height: 64px; }
-  .slab { display: block; font: 700 34px/1 var(--font-zilla-slab); letter-spacing: 0.14em; }
-  .tech { display: block; margin-top: 6px; font: 500 14px var(--font-barlow); letter-spacing: 0.42em; color: var(--color-lilac); }
   .proceso { margin-top: 32px; max-width: 62ch; color: var(--color-ink-2); }
 
   .apps-cont { margin-top: 40px; }
 
   .sobre-grid { display: grid; gap: 36px; }
-  .sobre-grid :global(.foto) { width: 100%; max-width: 420px; height: auto; border-radius: 18px; border: 2px solid rgba(244, 240, 255, 0.85); }
+  /* Retrato circular y sin borde (decisión de Saint). La imagen ya es cuadrada; object-fit asegura el círculo exacto. */
+  .sobre-grid :global(.foto) { width: 100%; max-width: 420px; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 50%; }
   .sobre-p { margin-top: 18px; color: var(--color-ink-2); max-width: 58ch; }
-  .sobre-acc { margin-top: 28px; }
+  .sobre-acc { margin-top: 28px; text-align: center; }
 
   .faq-wrap { max-width: 900px; }
 
@@ -183,13 +178,14 @@ const conFormulario = listaEsperaConfigurada || import.meta.env.DEV;
     .cta-clase .btn { width: auto; }
   }
   @media (min-width: 900px) {
-    .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 700px); column-gap: 40px; align-items: center; min-height: max(820px, calc(100svh - 76px)); padding-block: 28px 40px; }
-    h1 { font-size: clamp(72px, 6.7vw, 96px); }
-    .sub { margin-top: 22px; font-size: 20px; }
+    /* Columnas en proporción (a 1440px dan 588px de texto y 700px de mapa): con un ancho fijo para el mapa, el texto quedaba en 88-300px entre 900 y 1200px. */
+    .hero { grid-template-columns: minmax(0, 0.84fr) minmax(0, 1fr); column-gap: 40px; align-items: center; min-height: max(820px, calc(100svh - var(--nav-h))); padding-block: 28px 40px; }
+    .sub { margin-top: 22px; }
     .alt { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0 8px; }
     .alt span { display: inline; }
     .clase-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
     .sobre-grid { grid-template-columns: 420px minmax(0, 1fr); gap: 64px; align-items: center; }
+    .sobre-acc { text-align: left; }
     .cierre :global(.cierre-img) { aspect-ratio: 21 / 9; }
     .cierre-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
   }

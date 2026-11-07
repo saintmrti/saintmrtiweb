@@ -34,17 +34,16 @@ const { app } = Astro.props;
 <style>
   .app { display: grid; gap: 36px; }
   .cab { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
-  .nombre { font-size: 44px; }
   .funciones { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 9px; }
   .funciones li { position: relative; padding-left: 26px; }
   .funciones li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 9px; height: 9px; border-radius: 50%; background: var(--color-porcelain); box-shadow: 0 0 0 3px var(--color-apps); }
   .nota { margin-top: 20px; color: var(--color-ink-2); font-weight: 500; }
   .acciones { display: grid; gap: 12px; margin-top: 26px; }
-  .stack { margin-top: 20px; color: var(--color-lilac); font-size: 15px; }
+  .stack { margin-top: 20px; color: var(--color-lilac); font-size: var(--fs-small); }
   .app-vis { display: grid; grid-template-columns: 1fr; justify-items: center; gap: 12px; }
   .desk { display: none; }
   .mov { width: min(55vw, 260px); height: auto; border-radius: 22px; border: 2px solid rgba(244, 240, 255, 0.85); }
-  .pie { color: var(--color-ink-2); font-size: 14px; }
+  .pie { color: var(--color-ink-2); font-size: var(--fs-small); }
   @media (min-width: 640px) { .acciones { display: flex; flex-wrap: wrap; align-items: center; } }
   @media (min-width: 900px) {
     .app { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 56px; align-items: center; }

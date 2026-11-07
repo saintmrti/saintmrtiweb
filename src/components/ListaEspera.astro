@@ -50,14 +50,14 @@ const mensajeWa = `Hola Saint, quiero apuntarme a la lista de espera de la clase
 
 <style>
   .sign-top { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
-  .sign-t { font: 600 18px var(--font-barlow); }
+  .sign-t { font: 600 var(--fs-body)/1.5 var(--font-barlow); }
   .row { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 10px; }
   .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
-  .fine, .fine-top { margin-top: 10px; font-size: 14px; color: var(--color-ink-2); }
-  .fine-top { margin: 0 0 14px; font-size: 16px; }
+  .fine, .fine-top { margin-top: 10px; font-size: var(--fs-small); color: var(--color-ink-2); }
+  .fine-top { margin: 0 0 14px; }
   .fine a { text-decoration: underline; text-underline-offset: 3px; }
   .fine[data-error="true"] { color: #ffb3b3; }
-  .exito { margin: 4px 0 0; font: 600 20px/1.3 var(--font-barlow); color: var(--color-porcelain); }
+  .exito { margin: 4px 0 0; font: 600 var(--fs-lead)/1.3 var(--font-barlow); color: var(--color-porcelain); }
   .lista[data-ok="true"] .campos { display: none; }
   .lista[data-ok="true"] .fine { display: none; }
   button[disabled] { opacity: 0.7; cursor: progress; }

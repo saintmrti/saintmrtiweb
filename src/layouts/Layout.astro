@@ -11,7 +11,6 @@ interface Props {
   description?: string;
   image?: string;
   noindex?: boolean;
-  bare?: boolean;
   jsonLd?: object | object[];
 }
 
@@ -20,7 +19,6 @@ const {
   description = 'Aprende inteligencia artificial sin tecnicismos y construye con ella: clases, servicios de desarrollo web y automatización con IA, y apps.',
   image = '/og.png',
   noindex = false,
-  bare = false,
   jsonLd,
 } = Astro.props;
 
@@ -57,8 +55,8 @@ const hayApps = (await getCollection('apps')).length > 0;
   </head>
   <body>
     <a class="skip" href="#contenido">Saltar al contenido</a>
-    {!bare && <Nav hayApps={hayApps} />}
+    <Nav hayApps={hayApps} />
     <main id="contenido"><slot /></main>
-    {!bare && <Footer />}
+    <Footer />
   </body>
 </html>

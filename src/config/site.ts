@@ -19,9 +19,6 @@ export const site = {
   },
   moneyManager: 'https://moneymanager.saintmrti.com',
   formularios: {
-    // Google Form actual de clases personalizadas de IA (se conserva en /registro).
-    registro:
-      'https://docs.google.com/forms/d/e/1FAIpQLSfLllgBoCyVUIVqgEc3-Vx1enRWAGeypMDBCav6FCeWLAuNIw/viewform',
     // Google Form de la lista de espera de la Clase 1. Solo tiene dos preguntas obligatorias
     // (Nombre y Correo). Si se agrega otra obligatoria, Google rechaza el envío sin avisar.
     listaEspera: {
