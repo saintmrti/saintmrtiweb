@@ -19,9 +19,9 @@ export default defineConfig({
 
   // El portafolio anterior se muda a su subdominio. La regla 301 general (/project/*) se escribe al publicar.
   redirects: {
-    '/project/1': 'https://portafolio.saintmrti.com/project/1',
-    '/project/2': 'https://portafolio.saintmrti.com/project/2',
-    '/project/3': 'https://portafolio.saintmrti.com/project/3',
+    '/project/1': 'https://work.saintmrti.com/project/1',
+    '/project/2': 'https://work.saintmrti.com/project/2',
+    '/project/3': 'https://work.saintmrti.com/project/3',
   },
 
   fonts: [

@@ -12,24 +12,21 @@ const clases = defineCollection({
         resultado: z.string(),
         descripcion: z.string(),
         estado: z.enum(['proximamente', 'disponible']),
-        duracion: z.string(),
         nivel: z.string(),
         precio: z.number().optional(),
         precioLanzamiento: z.number().optional(),
         lanzamientoHasta: z.coerce.date().optional(),
-        hotmartUrl: z.string().url().optional(),
-        hotmartUrlLanzamiento: z.string().url().optional(),
+        compraUrl: z.string().url().optional(),
+        compraUrlLanzamiento: z.string().url().optional(),
         trailerYoutubeId: z.string().optional(),
         portada: image().optional(),
-        temario: z.array(z.string()),
-        temarioPreliminar: z.boolean().default(false),
         paraQuien: z.array(z.string()),
         orden: z.number().default(0),
       })
       // Una clase disponible sin enlace de compra no puede publicarse.
-      .refine((c) => c.estado !== 'disponible' || Boolean(c.hotmartUrl), {
-        message: 'Una clase "disponible" necesita hotmartUrl.',
-        path: ['hotmartUrl'],
+      .refine((c) => c.estado !== 'disponible' || Boolean(c.compraUrl), {
+        message: 'Una clase "disponible" necesita compraUrl.',
+        path: ['compraUrl'],
       }),
 });
 
@@ -68,16 +65,4 @@ const apps = defineCollection({
     }),
 });
 
-// Los testimonios de ejemplo llevan `muestra: true`: se ven en desarrollo y el build los excluye siempre.
-const testimonios = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/testimonios' }),
-  schema: z.object({
-    nombre: z.string(),
-    rol: z.string().optional(),
-    texto: z.string(),
-    muestra: z.boolean().default(false),
-    orden: z.number().default(0),
-  }),
-});
-
-export const collections = { clases, servicios, apps, testimonios };
+export const collections = { clases, servicios, apps };

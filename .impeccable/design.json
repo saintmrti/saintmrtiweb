@@ -57,7 +57,7 @@
       {"name": "The Slab-Once Rule", "body": "Zilla Slab solo existe en el sello SAINT TECHNOLOGY.", "section": "typography"},
       {"name": "The Flat-Enamel Rule", "body": "Ninguna superficie lleva sombra difusa; la viñeta usa un anillo de 3px sin desenfoque.", "section": "elevation"}
     ],
-    "dos": ["Do mantener las superficies planas con bordes de porcelana de 2px.", "Do asignar el color de línea por tema.", "Do escribir CSS base para celular y subir con min-width.", "Do marcar lo inexistente como tal.", "Do publicar servicios sin precio y solo testimonios reales.", "Do usar personajes originales para escenas de negocio, y retrato y capturas reales para lo verdadero.", "Do respetar prefers-reduced-motion."],
+    "dos": ["Do mantener las superficies planas con bordes de porcelana de 2px.", "Do asignar el color de línea por tema.", "Do escribir CSS base para celular y subir con min-width.", "Do marcar lo inexistente como tal.", "Do publicar servicios sin precio.", "Do usar personajes originales para escenas de negocio, y retrato y capturas reales para lo verdadero.", "Do respetar prefers-reduced-motion."],
     "donts": ["Don't usar glow, glass, texto en degradado ni sombras difusas.", "Don't repetir el diagrama de mapa fuera de la entrada.", "Don't usar el hero de IA genérico ni un tono infantil.", "Don't inventar testimonios, empresas o proyectos privados, ni mostrar precios.", "Don't prometer un correo cuando el formulario no está conectado.", "Don't usar Zilla Slab fuera del sello SAINT TECHNOLOGY."]
   }
 }

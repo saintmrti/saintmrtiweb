@@ -2,7 +2,7 @@
 import infinito from '../assets/brand/infinito.png';
 
 interface Props {
-  clase: { tituloCorto: string; estado: 'proximamente' | 'disponible'; duracion: string };
+  clase: { tituloCorto: string; estado: 'proximamente' | 'disponible' };
   servicios: { tituloCorto: string; etiqueta: string }[];
   app?: { nombre: string; version?: string };
 }
@@ -47,7 +47,7 @@ const estadoClase = planeada ? 'Próximamente' : 'Disponible';
         <text class="tagt" x="150" y="37" text-anchor="middle" fill="#0b0a29">YA ESTÁS EN LA LISTA</text>
       </g>
       <rect x="8" y="116" width="126" height="34" rx="6" fill="#ff2fdc" /><text class="tagt" x="71" y="141" text-anchor="middle" fill="#0b0a29">APRENDER</text>
-      <text class="l1" x="184" y="90">Clase 1: {clase.tituloCorto}</text><text class="l2" x="184" y="120">{estadoClase} · {clase.duracion}</text>
+      <text class="l1" x="184" y="90">Clase 1: {clase.tituloCorto}</text><text class="l2" x="184" y="120">{estadoClase}</text>
       <text class="l1" x="184" y="210">Más clases</text><text class="l2" x="184" y="240">En preparación</text>
     </g>
 

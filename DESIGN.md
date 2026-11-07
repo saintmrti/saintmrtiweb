@@ -136,7 +136,7 @@ La voz visual es de rotulación pública: titulares condensados en mayúsculas, 
 Paleta de tres tintas sobre un esmalte casi negro azulado, con porcelana lila como único claro.
 
 ### Primary
-- **Magenta Aprender** (`aprender`): la línea Aprender y la acción principal. Botón primario, etiqueta "Aprender", acento "IA" del H1, subrayado de titulares de sección, cursor y selección, flecha de las preguntas frecuentes, numerales del temario.
+- **Magenta Aprender** (`aprender`): la línea Aprender y la acción principal. Botón primario, etiqueta "Aprender", acento "IA" del H1, subrayado de titulares de sección, cursor y selección, flecha de las preguntas frecuentes.
 - **Azul Construir** (`construir`): la línea Construir (servicios de Saint Technology). Botón y etiqueta de servicios (texto blanco), viñetas de listas de servicios, subrayado de titulares de esa sección.
 - **Ámbar Apps** (`apps`): la línea Apps. Botón y etiqueta de apps, y además el color del anillo de foco y de la flecha del enlace a WhatsApp. Fuera de la línea Apps solo aparece como señal de interacción o de estado (punto "Próximamente").
 
@@ -218,7 +218,7 @@ Esquinas moderadas, no redondeadas de juguete: 6px etiquetas, 8px botones y camp
 - Barra esmalte con marca (infinito + "saintmrti"), enlaces Tinta Dos que se subrayan en magenta al pasar, y botón de contorno "Lista de espera". En celular, tira de píldoras de 1.5px.
 
 ### Service rows, class data and FAQ
-- Filas separadas por filetes (no tarjetas): imagen, título con etiqueta, descripción, viñetas con anillo azul, "Entrega" y botón azul. Lista de datos de la clase con filetes. FAQ con `details` y una flecha en V magenta. Testimonios con borde superior de porcelana; solo los reales entran al build.
+- Filas separadas por filetes (no tarjetas): imagen, título con etiqueta, descripción, viñetas con anillo azul, "Entrega" y botón azul. FAQ con `details` y una flecha en V magenta.
 
 ### Imagery
 - Personajes originales de estilo videojuego: un guía con armadura azul medianoche y porcelana en escenas de negocio, para la portada de la Clase 1, las tres ilustraciones de servicios y el banner de cierre (16:9, 21:9 desde 900px). Retrato real de Saint y capturas reales de Money Manager (con la nota "Vista de ejemplo con datos ficticios"). `Ilustracion` es un respaldo en SVG con la misma señalética cuando falta la imagen.
@@ -230,7 +230,7 @@ Esquinas moderadas, no redondeadas de juguete: 6px etiquetas, 8px botones y camp
 - **Do** asignar el color de línea por tema (Aprender magenta, Construir azul, Apps ámbar) y expresarlo con `--linea`.
 - **Do** escribir CSS base para celular y subir con `min-width`; el salto de diseño es 900px.
 - **Do** marcar lo inexistente como tal: punteado en el mapa, "Próximamente" con lista de espera, Money Manager con su estado real.
-- **Do** publicar servicios sin precio y solo testimonios reales; los ejemplos con `muestra: true` aparecen únicamente en desarrollo.
+- **Do** publicar servicios sin precio.
 - **Do** usar personajes originales (el guía de armadura medianoche y porcelana) para escenas de negocio, retrato y capturas reales para lo verdadero.
 - **Do** respetar `prefers-reduced-motion` (el punteado y el pulso se detienen).
 

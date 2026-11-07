@@ -5,7 +5,7 @@ export const site = {
   usuario: 'saintmrti',
   linea: 'Desarrollador web & automatización con IA',
   url: 'https://saintmrti.com',
-  portafolio: 'https://portafolio.saintmrti.com',
+  portafolio: 'https://work.saintmrti.com',
   correo: 'saintmartindev@gmail.com',
   whatsapp: '525653211904',
   whatsappVisible: '+52 56 5321 1904',

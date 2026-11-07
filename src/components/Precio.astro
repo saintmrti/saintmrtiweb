@@ -3,10 +3,10 @@ interface Props {
   precio?: number;
   precioLanzamiento?: number;
   lanzamientoHasta?: Date;
-  hotmartUrl?: string;
-  hotmartUrlLanzamiento?: string;
+  compraUrl?: string;
+  compraUrlLanzamiento?: string;
 }
-const { precio, precioLanzamiento, lanzamientoHasta, hotmartUrl, hotmartUrlLanzamiento } = Astro.props;
+const { precio, precioLanzamiento, lanzamientoHasta, compraUrl, compraUrlLanzamiento } = Astro.props;
 const mx = (n: number) => `MX$${n.toLocaleString('es-MX')}`;
 const hayLanzamiento = Boolean(precioLanzamiento && lanzamientoHasta);
 const hasta = lanzamientoHasta?.toISOString() ?? '';
@@ -25,8 +25,8 @@ const hasta = lanzamientoHasta?.toISOString() ?? '';
     ) : (
       <p class="normal"><span class="ahora">{mx((precio ?? precioLanzamiento)!)}</span></p>
     )}
-    {hotmartUrl && (
-      <a class="btn btn-m" href={hotmartUrl} data-normal-url={hotmartUrl} data-lanz-url={hotmartUrlLanzamiento ?? hotmartUrl} target="_blank" rel="noopener noreferrer" data-comprar>Comprar en Hotmart</a>
+    {compraUrl && (
+      <a class="btn btn-m" href={compraUrl} data-normal-url={compraUrl} data-lanz-url={compraUrlLanzamiento ?? compraUrl} target="_blank" rel="noopener noreferrer" data-comprar>Comprar la clase</a>
     )}
   </div>
 )}
