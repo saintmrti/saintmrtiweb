@@ -20,7 +20,7 @@ const { app } = Astro.props;
         <a class="btn btn-a" href={app.url} target="_blank" rel="noopener noreferrer">Abrir {app.nombre}</a>
       )}
       {app.estado === 'proximamente' && <span class="tag tag-p">Próximamente</span>}
-      <a class="btn btn-line" href={whatsappUrl(`Hola Saint, probé ${app.nombre} y esto es lo que mejoraría: `)} target="_blank" rel="noopener noreferrer">Cuéntame qué mejorarías</a>
+      <a class="btn btn-line" href={whatsappUrl(`Hola Saint, probé ${app.nombre} y esto es lo que mejoraría: `)} target="_blank" rel="noopener noreferrer">Cuéntanos qué mejorarías</a>
     </div>
     {app.stack.length > 0 && <p class="stack">Hecha con {app.stack.join(', ')}.</p>}
   </div>

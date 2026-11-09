@@ -93,7 +93,7 @@ const conFormulario = listaEsperaConfigurada || import.meta.env.DEV;
   {app && (
     <section id="apps" class="seccion" style="--linea: var(--color-apps)">
       <div class="wrap">
-        <h2 class="h2">Mis apps</h2>
+        <h2 class="h2">Nuestras apps</h2>
         <div class="apps-cont"><AppFicha app={app} /></div>
       </div>
     </section>
@@ -106,7 +106,7 @@ const conFormulario = listaEsperaConfigurada || import.meta.env.DEV;
         <h2 class="h2">Sobre mí</h2>
         <p class="lead">Con más de cuatro años de experiencia, me enfoco en el desarrollo de aplicaciones web escalables y de alto rendimiento utilizando tecnologías modernas como React.js, Next.js, TypeScript, Node.js y SQL. Mi objetivo es convertir ideas en experiencias digitales impactantes que perduran con el tiempo.</p>
         <p class="sobre-p">Diseño soluciones web modernas que impulsan la innovación y el crecimiento, colaborando con PyMEs ambiciosas y grandes empresas.</p>
-        <p class="sobre-acc"><a class="btn btn-line" href={site.portafolio} target="_blank" rel="noopener noreferrer">Ver mi portafolio</a></p>
+        <p class="sobre-acc"><a class="btn btn-line" href={site.portafolio} target="_blank" rel="noopener noreferrer">Ver portafolio</a></p>
       </div>
     </div>
   </section>
@@ -125,8 +125,8 @@ const conFormulario = listaEsperaConfigurada || import.meta.env.DEV;
     <div class="wrap cierre-grid seccion">
       <div>
         <h2 class="h2" id="cierre-t">Empieza por la Clase 1</h2>
-        <p class="lead">{conFormulario ? 'Déjame tu correo y te aviso cuando salga. Si lo que buscas es construir algo, escríbeme.' : 'Escríbeme por WhatsApp y te aviso cuando salga la clase. Si lo que buscas es construir algo, también.'}</p>
-        <p class="cierre-acc"><a class="btn btn-line" href={whatsappUrl('Hola Saint, vi tu sitio y quiero platicar.')} target="_blank" rel="noopener noreferrer">Escríbeme por WhatsApp</a></p>
+        <p class="lead">{conFormulario ? 'Déjanos tu correo y te avisamos cuando salga. Si lo que buscas es construir algo, escríbenos.' : 'Escríbenos por WhatsApp y te avisamos cuando salga la clase. Si lo que buscas es construir algo, también.'}</p>
+        <p class="cierre-acc"><a class="btn btn-line" href={whatsappUrl('Hola Saint, vi tu sitio y quiero platicar.')} target="_blank" rel="noopener noreferrer">Escríbenos por WhatsApp</a></p>
       </div>
       <ListaEspera id="lista-cierre" claseTitulo={clase.titulo} />
     </div>

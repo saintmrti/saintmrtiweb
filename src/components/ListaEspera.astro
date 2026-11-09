@@ -12,7 +12,7 @@ const mensajeWa = `Hola Saint, quiero apuntarme a la lista de espera de la clase
 {modo === 'whatsapp' ? (
   <div class="sign" id={id}>
     <div class="sign-top"><span class="tag tag-m">Aprender</span><span class="sign-t">Clase 1 · Próximamente</span></div>
-    <p class="fine-top">Escríbeme por WhatsApp y te aviso por ahí cuando salga la clase.</p>
+    <p class="fine-top">Escríbenos por WhatsApp y te avisamos por ahí cuando salga la clase.</p>
     <a class="btn btn-m btn-full" href={whatsappUrl(mensajeWa)} target="_blank" rel="noopener noreferrer">Avísame por WhatsApp</a>
   </div>
 ) : (
@@ -44,7 +44,7 @@ const mensajeWa = `Hola Saint, quiero apuntarme a la lista de espera de la clase
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
       </button>
     </div>
-    <p class="exito" role="status" tabindex="-1" hidden>Listo, quedaste en la lista. Te escribo cuando salga la clase.</p>
+    <p class="exito" role="status" tabindex="-1" hidden>Listo, quedaste en la lista. Te escribiremos cuando salga la clase.</p>
     <p class="estado" data-estado role="status" aria-live="polite"></p>
     <p class="fine">Al apuntarte aceptas el <a href="/privacidad/">aviso de privacidad</a>.</p>
   </form>
@@ -127,7 +127,7 @@ const mensajeWa = `Hola Saint, quiero apuntarme a la lista de espera de la clase
         texto.textContent = original;
         const alterno = form.dataset.verForm;
         // Sin innerHTML: el enlace de respaldo se arma con nodos del DOM.
-        estado.replaceChildren('No pude enviarlo. ');
+        estado.replaceChildren('No pudimos enviarlo. ');
         if (alterno) {
           const enlace = document.createElement('a');
           enlace.href = alterno;
