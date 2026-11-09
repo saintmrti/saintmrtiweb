@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // saintmrti.com es un sitio estático: Cloudflare Workers sirve los archivos de `dist`, que genera `pnpm build`.
+  // El nombre debe ser idéntico al del proyecto en el panel de Cloudflare (Workers & Pages); si no, el build falla.
+  "name": "saintmrtiweb",
+  "compatibility_date": "2026-11-08",
+  "assets": {
+    "directory": "./dist",
+    // Una ruta que no existe muestra la página 404 del sitio, con estado 404.
+    "not_found_handling": "404-page"
+  }
+}

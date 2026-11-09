@@ -1,0 +1,7 @@
+# Rutas del sitio anterior que ahora viven en otro lugar. Cloudflare las aplica antes de servir cualquier archivo.
+# Las que llevan comodín (*) van al final. Cloudflare trata "/ruta" y "/ruta/" como rutas distintas, por eso van las dos.
+/registro https://work.saintmrti.com/registro 301
+/registro/ https://work.saintmrti.com/registro 301
+/links https://linktr.ee/saintmrti 302
+/links/ https://linktr.ee/saintmrti 302
+/project/* https://work.saintmrti.com/project/:splat 301

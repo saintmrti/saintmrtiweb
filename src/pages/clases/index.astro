@@ -15,14 +15,14 @@ const primera = clases[0];
     <ul class="lista">
       {clases.map((c, i) => (
         <li class="clase">
-          <a class="portada" href={`/clases/${c.id}`} aria-hidden="true" tabindex="-1">
+          <a class="portada" href={`/clases/${c.id}/`} aria-hidden="true" tabindex="-1">
             {c.data.portada ? <Image src={c.data.portada} alt="" widths={[480, 800]} sizes="(min-width: 900px) 460px, 100vw" /> : <Ilustracion tipo="clase" />}
           </a>
           <div>
             <p class="estado"><span class="dot" aria-hidden="true"></span>{c.data.estado === 'proximamente' ? 'Próximamente' : 'Disponible'} · Clase {i + 1}</p>
-            <h2 class="h3 t"><a href={`/clases/${c.id}`}>{c.data.titulo}</a></h2>
+            <h2 class="h3 t"><a href={`/clases/${c.id}/`}>{c.data.titulo}</a></h2>
             <p class="d">{c.data.resultado}</p>
-            <p class="acc"><a class="btn btn-m" href={`/clases/${c.id}`}>Ver la clase</a></p>
+            <p class="acc"><a class="btn btn-m" href={`/clases/${c.id}/`}>Ver la clase</a></p>
           </div>
         </li>
       ))}

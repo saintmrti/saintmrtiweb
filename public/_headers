@@ -1,0 +1,15 @@
+# Cabeceras que Cloudflare agrega a los archivos del sitio.
+
+# La dirección temporal de Cloudflare (workers.dev) no debe salir en buscadores; saintmrti.com sí.
+https://:version.:subdomain.workers.dev/*
+  X-Robots-Tag: noindex
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Astro pone una huella en el nombre de estos archivos, así que el navegador puede guardarlos un año.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable

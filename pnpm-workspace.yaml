@@ -1,3 +1,6 @@
+allowBuilds:
+  esbuild: true
+  workerd: true
 minimumReleaseAgeExclude:
   - '@tailwindcss/node@4.3.4'
   - '@tailwindcss/oxide-android-arm64@4.3.4'

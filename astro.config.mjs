@@ -17,16 +17,8 @@ export default defineConfig({
 
   integrations: [sitemap()],
 
-  // Páginas que ya no viven aquí: el portafolio anterior (y su formulario /registro) está en work.saintmrti.com
-  // y /links es el Linktree de Saint. Con salida estática salen como redirección HTML; al publicar se escriben
-  // como redirecciones reales en `public/_redirects` (/project/*, /registro y /links).
-  redirects: {
-    '/project/1': 'https://work.saintmrti.com/project/1',
-    '/project/2': 'https://work.saintmrti.com/project/2',
-    '/project/3': 'https://work.saintmrti.com/project/3',
-    '/registro': 'https://work.saintmrti.com/registro',
-    '/links': 'https://linktr.ee/saintmrti',
-  },
+  // Las rutas del sitio anterior (/project/*, /registro y /links) se redirigen con `public/_redirects`: Cloudflare
+  // las responde con 301 o 302 reales, no con una página HTML de redirección.
 
   fonts: [
     {

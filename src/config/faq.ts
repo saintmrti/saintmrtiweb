@@ -5,5 +5,5 @@ export const faq = [
   { q: '¿Cómo la veo y cuánto cuesta?', a: 'Es una clase grabada, para que la veas a tu ritmo. Dónde comprarla y cuánto cuesta se anuncia cuando salga; si te apuntas a la <a href="/#lista">lista de espera</a>, te aviso por correo.' },
   { q: '¿Cuánto cuestan los servicios?', a: 'Cada proyecto se cotiza según lo que necesitas. Escríbeme por WhatsApp con tu idea y te respondo con una propuesta.' },
   { q: '¿Cómo trabajamos en un proyecto?', a: 'Son 3 videollamadas: una para definir lo que necesitas, otra a mitad del camino para revisar avances y otra para presentar el resultado final, además de atención personalizada por WhatsApp.' },
-  { q: '¿Qué haces con mis datos?', a: 'Los datos de la lista de espera se usan para avisarte de la clase. Los detalles están en el <a href="/privacidad">aviso de privacidad</a>.' },
+  { q: '¿Qué haces con mis datos?', a: 'Los datos de la lista de espera se usan para avisarte de la clase. Los detalles están en el <a href="/privacidad/">aviso de privacidad</a>.' },
 ];
