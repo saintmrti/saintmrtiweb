@@ -101,7 +101,7 @@ const conFormulario = listaEsperaConfigurada || import.meta.env.DEV;
 
   <section id="sobre-mi" class="seccion banda" style="--linea: var(--color-aprender)">
     <div class="wrap sobre-grid">
-      <Image src={saint} alt="Saint-Martín Méndez" width={520} height={520} class="foto" widths={[360, 520, 800]} sizes="(min-width: 900px) 420px, 100vw" />
+      <Image src={saint} alt="Saint-Martín Méndez" width={560} height={560} class="foto" widths={[240, 280, 480, 560, 720]} sizes="(min-width: 900px) 280px, 240px" quality={90} />
       <div>
         <h2 class="h2">Sobre mí</h2>
         <p class="lead">Con más de cuatro años de experiencia, me enfoco en el desarrollo de aplicaciones web escalables y de alto rendimiento utilizando tecnologías modernas como React.js, Next.js, TypeScript, Node.js y SQL. Mi objetivo es convertir ideas en experiencias digitales impactantes que perduran con el tiempo.</p>
@@ -162,8 +162,8 @@ const conFormulario = listaEsperaConfigurada || import.meta.env.DEV;
   .apps-cont { margin-top: 40px; }
 
   .sobre-grid { display: grid; gap: 36px; }
-  /* Retrato circular y sin borde (decisión de Saint). La imagen ya es cuadrada; object-fit asegura el círculo exacto. */
-  .sobre-grid :global(.foto) { width: 100%; max-width: 420px; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 50%; }
+  /* Retrato cuadrado con esquinas redondeadas y sin borde (decisión de Saint, antes era circular). Centrado en celular; a la izquierda del texto desde 900px. */
+  .sobre-grid :global(.foto) { width: 100%; max-width: 240px; height: auto; aspect-ratio: 1 / 1; object-fit: cover; border-radius: 28px; justify-self: center; }
   .sobre-p { margin-top: 18px; color: var(--color-ink-2); max-width: 58ch; }
   .sobre-acc { margin-top: 28px; text-align: center; }
 
@@ -184,7 +184,8 @@ const conFormulario = listaEsperaConfigurada || import.meta.env.DEV;
     .alt { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0 8px; }
     .alt span { display: inline; }
     .clase-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
-    .sobre-grid { grid-template-columns: 420px minmax(0, 1fr); gap: 64px; align-items: center; }
+    .sobre-grid { grid-template-columns: 280px minmax(0, 1fr); gap: 64px; align-items: center; }
+    .sobre-grid :global(.foto) { max-width: 280px; justify-self: start; }
     .sobre-acc { text-align: left; }
     .cierre :global(.cierre-img) { aspect-ratio: 21 / 9; }
     .cierre-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
